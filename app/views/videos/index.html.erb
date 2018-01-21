@@ -1,30 +1,26 @@
-<div class="row movies-row">
+<div class="row">
   <% @videos.each do |video| %>
-    <div class="col-lg-2 col-md-3 col-sm-4 col-6 movie-col">
-      <div class="movie-card text-center" 
-          data-toggle="popover" 
-          data-content="<%= popover(video) %>">
-
-        <!-- <h2 class="movie-title" ><%#= video.title %></h2> -->
+    <div class="col-md-4">
+      <div class="br-card">
         <%= link_to video_path(video), class: "br-card-img-link" do %>
           <%= cl_image_tag(video.image, :client_hints=>true, :transformation=>[
-          {:aspect_ratio=>"2:3", :gravity=>"auto", :crop=>"fill"},
+          {:aspect_ratio=>"16:9", :gravity=>"auto", :crop=>"fill"},
           {:width=>"auto", :quality=>"auto", :fetch_format=>:auto, :crop=>"scale"}
           ]) %>
-          <!-- <span class="video-time"><%#= youtube_time(video.duration) %></span> -->
+        <span class="video-time"><%= youtube_time(video.duration) %></span>
         <% end %>
-        <!-- <div class="br-card-body">
+        <div class="br-card-body">
 
-          <%#= link_to "", video_path(video), class: "clickable" %>
+          <%= link_to "", video_path(video), class: "clickable" %>
 
           <div class="mb-2">
             <h4 class="br-card-link br-card-title"><%= video.title %></h4>
           </div>
           <div>
-            <%#= link_to video.user.full_name, user_path(video.user), class: "br-card-link text-secondary user-link" %> 
+            <%= link_to video.user.full_name, user_path(video.user), class: "br-card-link text-secondary user-link" %> 
             <span class="text-secondary"> | <%= video.minutes %> Views</span>
           </div>
-        </div> -->
+        </div> 
       </div>
     </div>
   <% end %>
@@ -35,10 +31,9 @@
   </div>
 </div>
 
-
-
 <% unless user_signed_in? %>
   <script>
+  
     $(".br-card-img-link").click(function(e) {
       e.preventDefault();
       $('#login-modal').modal();
@@ -46,22 +41,6 @@
   </script>
 <% end %>
 
-<script>
-  document.addEventListener("turbolinks:before-cache", function() {
-    $('[data-toggle="popover"]').popover('dispose');
-  })
- 
-
-  $(document).on('turbolinks:load', function() {
-    $('[data-toggle="popover"]').popover({ 
-      trigger: 'hover', 
-      delay: { "show": 750, "hide": 100 },
-      html: true,
-      container: 'body'
-    });
-
-  });
-</script>
 
 
 

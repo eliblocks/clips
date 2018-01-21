@@ -1,12 +1,21 @@
 <% provide(:title, "Account") %>
 <br>
 
-<h4><%= current_user.full_name %> Account</h4>
-
+<h4 class="text-center">Account</h4>
+<span class="account-header"><%= link_to "Edit account", edit_user_registration_path %></span>
+<span class="account-header">Name: <%= current_user.full_name %></span>
+<span class="account-header">Email: <%= current_user.email %></span>
+<% if current_user.paypal_email %>
+  <span class="account-header">Paypal email: <%= current_user.paypal_email %></span>
+<% end %>
 <span class="account-header">Balance: <%= current_account.balance / 60 %></span>
 <ul>
+  <% if current_user.videos.any? %>
+    <li>Earned <%= current_account.minutes_earned_last(30) %> minutes in the last 30 days</li>
+  <% end %>
   <li>Streamed <%= current_account.minutes_used_last_30 %> minutes in the last 30 days</li>
   <li>Purchased <%= current_account.minutes_purchased_last_30 %> minutes in the last 30 days</li>
+</ul>
 </ul>
 <hr>
 <div class="row">

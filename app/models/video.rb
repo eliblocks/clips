@@ -27,22 +27,15 @@ class Video < ApplicationRecord
   end
 
   def cloudfront_url
-    domain_id = ENV["CLOUDFRONT_DOMAIN_ID"]
+    domain_id = ENV["CLIPS_CLOUDFRONT_DOMAIN_ID"]
     "https://#{domain_id}.cloudfront.net/#{clip.id}"
   end
 
   #error on non mp4 ending
-  def fastly_url
-    "https://browzable.global.ssl.fastly.net/#{clip.id[0..-5]}.m3u8"
-  end
+  # def fastly_url
+  #   "https://browzable.global.ssl.fastly.net/#{clip.id[0..-5]}.m3u8"
+  # end
 
-  def cdn_url
-    if ENV['CDN_USED'] == 'fastly'
-      fastly_url
-    elsif ENV['CDN_USED'] == 'cloudfront'
-      signed_cloudfront_url
-    end
-  end
 
   def policy
     {

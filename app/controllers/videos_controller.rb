@@ -1,12 +1,13 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy, :remove, :restore]
-  before_action :redirect_to_sign_up, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :remove, :restore, :preview]
+  before_action :redirect_to_sign_in, only: [:new, :edit, :update, :destroy]
+  before_action :redirect_to_preview, only: [:show]
 
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.featured
-    .includes(:user)
+    @videos = Video.includes(:user)
+    .where.not(removed: true)
     .order(created_at: :desc)
     .page(params[:page])
     .per(12)
@@ -18,12 +19,16 @@ class VideosController < ApplicationController
     if @video.removed || @video.suspended
       render 'embeds/unavailable'
     end
-    if current_account.balance < 10
+
+    if current_user.account.balance < 10
       flash[:notice] = "You're out of minutes! Buy more to keep watching"
       session[:video_id] = @video.id
       session[:ref] = 'site'
       redirect_to new_charge_path()
     end
+  end
+
+  def preview
   end
 
   # GET /videos/new
@@ -102,12 +107,20 @@ class VideosController < ApplicationController
 
   private
 
-    def redirect_to_sign_up
+    def redirect_to_sign_in
       unless user_signed_in?
-        flash[:notice] = "Sign up or log in to watch"
+        flash[:notice] = "Please log in"
         redirect_to new_user_session_path
       end
     end
+
+    def redirect_to_preview
+      unless user_signed_in?
+        redirect_to preview_video_path
+      end
+
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_video
       @video = Video.find(params[:id])
@@ -119,8 +132,3 @@ class VideosController < ApplicationController
                     :approved, :clip, :balance, :views, :user_id, :imdb_id, :public)
     end
 end
-
-
-
-
-#@videos = Video.approved.where.not(removed: true).where(public: true).includes(:user).order(created_at: :desc).page(params[:page]).per(12)

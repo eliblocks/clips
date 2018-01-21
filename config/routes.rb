@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do
       patch 'remove'
       patch 'restore'
+      get 'preview'
     end
   end
 

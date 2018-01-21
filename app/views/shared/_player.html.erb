@@ -2,7 +2,7 @@
 <div class="minutes-balance">
   <%= link_to root_path, class: "icon-link" do %>
     <div class="link-container">
-      <%= image_tag "browzable_logo_white.png", width: 130, height: 32 %> 
+      <%= image_tag "/aboutica_logo_white.png", width: 133, height: 24 %> 
       <span class="divider-player">&#8226;</span>
       <span id="balance" data-balance="<%= current_account.balance %>">
         <%= number_to_human(current_account.balance / 60) %>
@@ -11,6 +11,6 @@
   <% end %>
 </div>
 <div class="test-class"></div>
-<%= content_tag :div, "", class: "browzable-wrapper", data: { url: @video.cdn_url, video_id: @video.id } do %>
+<%= content_tag :div, "", class: "browzable-wrapper", data: { url: @video.signed_cloudfront_url, video_id: @video.id } do %>
   <div id="browzable-video"></div>
 <% end %>

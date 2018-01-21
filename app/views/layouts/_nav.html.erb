@@ -5,7 +5,7 @@
     <div class="browzable-brand">
 
       <%= link_to root_path do %>
-        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
+        <%= image_tag "/aboutica_logo_black.png", width: 133, height: 24, class: "mb-1 br-logo" %>
       <% end %>
       <span class="dot-separator">&#8226;</span>
       <%= link_to(number_to_human(current_user.account.balance/60), 
@@ -30,27 +30,32 @@
         <% end %>
       </div>
       <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item dropdown">
+        <li class="nav-item">
+          <%= nav_link "Upload", new_video_path %>
+        </li>  
+        
+        <% if current_user.videos.any? %>
+          <li class="nav-item">
+            <%= nav_link "Library", library_path %>
+          </li>
+        <% end %>
+
+        <li class="nav-item">
+          <%= nav_link "Buy Minutes", new_charge_path %>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="buttton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Account
           </a>
           <div class="dropdown-menu dropdown-menu-right nav-item" aria-labelledby="dropdownMenuButton">
-            <%#= link_to "Profile", user_path(current_user), class: "dropdown-item" if current_user.videos.any? %>
-            <%#= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
-            <%#= link_to "Usage", usage_path, class: "dropdown-item" %>
-            <%#= link_to "Account", account_path, class: "dropdown-item" %>
-            <%#= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" if current_user.videos.any? %>
+            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
+            <%= link_to "Usage", usage_path, class: "dropdown-item" %>
+            <%= link_to "Account", account_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
-        </div> -->
-        <li class="nav-item">
-          <%= nav_link "Buy Minutes", new_charge_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Account", account_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
+        </li> 
+
         
       </ul>
     </div>
@@ -59,7 +64,7 @@
 <% else %>
   <nav class="navbar navbar-expand navbar-light bg-light">
     <%= link_to root_path, class: "br-icon" do %>
-        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
+        <%= image_tag "/aboutica_logo_black.png", width: 133, height: 24, class: "mb-1 br-logo" %>
       <% end %>
 
     <!-- <ul class="navbar-nav">
