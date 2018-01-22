@@ -2,7 +2,7 @@
 <div class="minutes-balance">
   <%= link_to root_path, class: "icon-link" do %>
     <div class="link-container">
-      <%= image_tag "/aboutica_logo_white.png", width: 133, height: 24 %> 
+      <%= image_tag "/aboutica_logo_white.png", width: 116, height: 21 %> 
       <span class="divider-player">&#8226;</span>
       <span id="balance" data-balance="<%= current_account.balance %>">
         <%= number_to_human(current_account.balance / 60) %>

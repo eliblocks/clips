@@ -28,17 +28,14 @@
       <div class="form-group">
         <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
       </div>
-      <div class="form-group">
-        <%= form.text_field :imdb_id, class: "form-control", placeholder: "IMDB ID" %>
-      </div>
       <div class="form-check form-check-inline">
         <%= form.label :public, "show", class: "form-check-label" do %>
-          <%= form.radio_button :public, true, class: "form-check-input" %> Public
+          <%= form.radio_button :public, true, checked: true, class: "form-check-input" %> Public
         <% end %>
       </div>
       <div class="form-check, form-check-inline">
         <%= form.label :public, "hide", class: "form-check-label" do %>  
-          <%= form.radio_button :public, false, class: "form-check-input" %> Private
+          <%= form.radio_button :public, false, checked: false, class: "form-check-input" %> Private
         <% end %>
       </div>
       <div class="form-group">
