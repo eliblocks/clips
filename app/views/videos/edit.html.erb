@@ -1,32 +1,38 @@
 <% provide(:title, "Edit Video") %>
 <br>
-<%= form_with(model: @video, local: true) do |form| %>
-  <div class="form-row">
-    <div class="col-md-5 mb-4">
-      <%= content_tag :div, "", 
-        class: "browzable-wrapper", 
-        data: { url: @video.clip.url, video_id: @video.id } do %>
-          <div id="browzable-video"></div>
-      <% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to video_path(@video) do %>
+      <%= cl_image_tag(@video.image, :client_hints=>true, :transformation=>[
+      {:aspect_ratio=>"16:9", :gravity=>"auto", :crop=>"fill"},
+      {:width=>"auto", :quality=>"auto", :fetch_format=>:auto, :crop=>"scale"}
+      ], class: "img-fluid preview-image") %>
+    <% end %>
+    <div class="preview-loader"></div>
+    <div>
+      <label for="preview-upload" class="btn btn-secondary upload-preview-btn mt-1">Change preview</label>   
+      <%= cl_image_upload_tag(:image_id, aria_hidden: true) %>
     </div>
-    <div class="form-group preview-group col-md-5 ml-5">
-        <div class="profile-pic">
-          <%= cl_image_tag(@video.image, width: 175, class: "preview-image") %>
-        </div>
-        <div class="preview-loader"></div>
-        <div class="mt-2">
-          <label for="preview-upload" class="btn btn-secondary">Change preview</label>   
-          <%= cl_image_upload_tag(:image_id, aria_hidden: true) %>
-        </div>
+    <div class="embed-code-container bg-light">
+      <h5>Link</h5>
+      https://www.aboutica.com/videos/<%= @video.id %>
+      <br><br>
+      <h5>Embed Code</h5>
+      &lt;iframe width="560" height="315" src="https://www.aboutica.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
     </div>
   </div>
-  <div class="form-row">
-    <div class="col-md-5">
+  <div class="col-md-7 offset-md-1">
+    <h4>Edit <%= @video.title %></h4>
+    <%= form_with(model: @video, local: true) do |form| %>
+      
       <div class="form-group">
-        <%= form.text_field :title, class: "form-control", placeholder: "Title" %>
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control" %>
       </div>
       <div class="form-check form-check-inline">
         <%= form.label :public, "show", class: "form-check-label" do %>
@@ -41,50 +47,25 @@
       <div class="form-group">
         <%= form.submit "Update", class: "btn btn-primary mt-3" %>
       </div>
+      
+
+    <% end %>
+    <div class="delete-section mb-auto">
+      <hr>
+      <%= link_to "Delete Video", 
+          video_path(@video), 
+          method: :delete, 
+          class: "btn btn-danger", 
+          data: {confirm: "Are you sure?"} %>
     </div>
-    <div class="col-md-5 ml-5">
-      <div class="embed-code-container bg-light">
-        <h5>Embed Code</h5>
-        &lt;iframe width="560" height="315" src="https://www.browzable.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
-      </div>
-    </div>
+    <%= cloudinary_js_config %>
   </div>
-<% end %>
-<hr>
-
-<%= link_to "Delete Video", 
-    video_path(@video), 
-    method: :delete, 
-    class: "btn btn-danger", 
-    data: {confirm: "Are you sure?"} %>
-
-<%= cloudinary_js_config %>
-
+</div>
 <script>
+  $(document).on("turbolinks:load", function() {
 
-  //Show Video
-  var wrapper = document.querySelector(".browzable-wrapper");
-  var url = wrapper.dataset.url;
-  var videoId = wrapper.dataset.videoId;
-  var playerInstance = jwplayer("browzable-video");
-  var balance = $(".minutes-balance");
-  var playDuration = 10;
-
-  playerInstance.setup({
-      file: url,
-      image: "<%= @video.image_url %>"
-  });
-
-  jwplayer().on('ready', function() {
-    $(".jw-spacer").addClass("br-info")
-    $(".br-info").append(balance);
-    balance.show();
-  });
-
-  $(".cloudinary-fileupload").attr("id", "preview-upload");
-
-  // Preview Upload
-  $(function() {
+    $(".cloudinary-fileupload").attr("id", "preview-upload");
+    
     if($.fn.cloudinary_fileupload !== undefined) {
 
       $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload({
@@ -98,10 +79,15 @@
         var id = data.result.public_id;
         var format = data.result.format;
         var version = data.result.version;
-        var url = "https://res.cloudinary.com/eli/image/upload/w_200/v" + version + "/" + id + "." + format;
-        $(".preview-image").attr("src", url);
+        var tail = "/v" + version + "/" + id + "." + format;
+        var oldUrl = $(".preview-image").attr("src");
+
+        console.log(oldUrl);
+        var newUrl = oldUrl.replace(/\/v.*$/, tail);
+        // var url = "https://res.cloudinary.com/eli/image/upload/w_200/v" + version + "/" + id + "." + format;
+        $(".preview-image").attr("src", newUrl);
         $(".loader").hide();
-        console.log(id, format, version, url);
+        console.log(id, format, version);
       });
     }
   });

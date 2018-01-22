@@ -5,7 +5,12 @@
     <div class="video-info-container">
         <h4><%= @video.title %></h4>
         <span><%= @video.minutes %> Views</span> | <span><%= time_ago_in_words(@video.created_at) %> ago</span>
-        <button type="button" class="btn btn-secondary share-link" data-toggle="modal" data-target="#iframe-modal">Share</button>
+        <button type="button" 
+                class="btn btn-secondary float-right" 
+                data-toggle="modal" 
+                data-target="#iframe-modal">
+          Share
+        </button>
         <hr>
       <div class="user-info">
        <%= cl_image_tag @video.user.account.image, client_hints: true, transformation: [ 
@@ -26,7 +31,7 @@
         </button>
       </div>
       <div class="modal-body">
-        &lt;iframe width="560" height="315" src="https://www.browzable.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+        &lt;iframe width="560" height="315" src="https://www.aboutica.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
