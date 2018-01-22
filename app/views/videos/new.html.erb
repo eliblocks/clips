@@ -1,8 +1,12 @@
 <% provide(:title, "Upload") %>
 <br>
-<br>
 <div class="row">
   <div class="col-md-6 m-auto text-center">
+    <p>
+        Aboutica helps video creators earn money. 
+        Your viewers will pay &cent;1 for every minute they spend watching your content, 
+        and you get 70%.
+    </p><br>
     <div class="file_type_alert"></div>
     <%= form_with(model: Video.new, local: true) do |form| %>
       <% if @video.errors.any? %>

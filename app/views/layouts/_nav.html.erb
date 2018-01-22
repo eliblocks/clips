@@ -23,7 +23,7 @@
           <div class="input-group search-group">
             <%= text_field_tag(:q, "", class: "search-control form-control", 
                                 placeholder: params[:q], id: "search-input") %>
-            <span class="input-group-btn">
+            <span class="input-group-append">
               <button type="submit" class="btn btn-secondary"><%= fa_icon "search" %></button>
             </span>
           </div>
@@ -33,7 +33,6 @@
         <li class="nav-item">
           <%= nav_link "Upload", new_video_path %>
         </li>  
-        
         <% if current_user.videos.any? %>
           <li class="nav-item">
             <%= nav_link "Library", library_path %>

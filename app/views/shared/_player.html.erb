@@ -1,4 +1,3 @@
-<div class="test-class"></div>
 <div class="minutes-balance">
   <%= link_to root_path, class: "icon-link" do %>
     <div class="link-container">
@@ -10,7 +9,6 @@
     </div>
   <% end %>
 </div>
-<div class="test-class"></div>
-<%= content_tag :div, "", class: "browzable-wrapper", data: { url: @video.signed_cloudfront_url, video_id: @video.id } do %>
+<%= content_tag :div, "", class: "browzable-wrapper mt-3", data: { url: @video.signed_cloudfront_url, video_id: @video.id } do %>
   <div id="browzable-video"></div>
 <% end %>
