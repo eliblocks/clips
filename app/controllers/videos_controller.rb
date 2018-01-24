@@ -109,8 +109,7 @@ class VideosController < ApplicationController
 
     def redirect_to_sign_in
       unless user_signed_in?
-        flash[:notice] = "Please log in"
-        redirect_to new_user_session_path
+        redirect_to root_path
       end
     end
 

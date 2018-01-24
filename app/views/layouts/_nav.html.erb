@@ -18,7 +18,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-      <div class="navbar-nav ml-5">
+      <div class="navbar-nav search-nav">
         <%= form_tag("/search", method: :get, class: "form-inline my-2 my-lg-0") do %>
           <div class="input-group search-group">
             <%= text_field_tag(:q, "", class: "search-control form-control", 
@@ -31,7 +31,7 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= nav_link "Upload", new_video_path %>
+          <%= link_to "Upload", new_video_path, class: "btn btn-primary mr-2" %>
         </li>  
         <% if current_user.videos.any? %>
           <li class="nav-item">
@@ -54,8 +54,6 @@
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li> 
-
-        
       </ul>
     </div>
   </nav>
@@ -74,13 +72,12 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link pr-3 auth-link">Sign up</a>
-        <%#= link_to "Sign up", new_user_registration_path, class: "nav-link pr-3 auth-link", id: "signup" %>
+        <a href="#" class="nav-link auth-link mr-3">Sign in</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link auth-link">Log in</a>
-        <%#= link_to "Log in", new_user_session_path, class: "nav-link auth-link" %>
+        <a href="#" class="auth-link btn btn-primary">Create Account</a>
       </li>
+      
     </ul>
   </nav>
 <% end %>

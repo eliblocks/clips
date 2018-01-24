@@ -236,6 +236,23 @@ input[type='file'] {
   width: 20em;
 }
 
+.search-nav {
+  margin-left: 4rem;
+}
+
+@media (max-width:1070px) and (min-width:990px) {
+  #search-input {
+    width: 15em;
+  }
+  .search-nav {
+    margin-left: 2rem;
+  }
+}​
+
+
+
+
+
 .search-control:focus {
   box-shadow: none;
 }
