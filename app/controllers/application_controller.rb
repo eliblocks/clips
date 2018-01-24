@@ -16,16 +16,16 @@ class ApplicationController < ActionController::Base
         video_id = request.env['omniauth.origin'].match(/\/\d+/).to_s[1..-1]
         video_path(video_id)
       else
-        super
+        request.env['omniauth.origin']
       end
     end
 
     def after_inactive_sign_up_path_for(resource)
-      library_path
+      root_url
     end
 
     def after_sign_up_path_for(resource)
-      library_path
+      root_url
     end
 
     def configure_permitted_parameters

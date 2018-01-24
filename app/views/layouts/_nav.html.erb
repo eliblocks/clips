@@ -71,11 +71,14 @@
     </ul> -->
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link auth-link mr-3">Sign in</a>
+      <li class="nav-item upload-ad">
+        <%= link_to "Upload", new_video_path, class: "auth-link mr-3 btn btn-primary" %>
       </li>
       <li class="nav-item">
-        <a href="#" class="auth-link btn btn-primary">Create Account</a>
+        <a href="#" class="nav-link auth-link">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link auth-link">Sign up</a>
       </li>
       
     </ul>
@@ -84,7 +87,6 @@
 
 <script>
   $(".auth-link").click(function(e) {
-    e.preventDefault();
-    $("#login-modal").modal();
+    authModal(e);
   });
 </script>
