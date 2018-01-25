@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get 'buy_message', to: 'embeds#buy_message'
   get 'thank_you', to: 'embeds#thank_you'
   get 'stats', to: 'static#stats'
+  get 'upload', to: 'static#upload'
 
 
   get 'sessions/impersonate', to: 'sessions#impersonate'

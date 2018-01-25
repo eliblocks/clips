@@ -1,11 +1,11 @@
 <% provide(:title, @video.title) %>
 <div class="row">
   <div class="col-lg-10 m-auto">
-    <%= cl_image_tag(@video.image, class: "img-fluid" ) %>
+    <%= cl_image_tag(@video.image, class: "img-fluid mt-3" ) %>
     <div class="video-info-container">
         <h4><%= @video.title %></h4>
         <span><%= @video.minutes %> Views</span> | <span><%= time_ago_in_words(@video.created_at) %> ago</span>
-        <button type="button" class="btn btn-secondary share-link" data-toggle="modal" data-target="#iframe-modal">Share</button>
+        <button type="button" class="btn btn-secondary share-link float-right" data-toggle="modal" data-target="#iframe-modal">Share</button>
         <hr>
       <div class="user-info">
        <%= cl_image_tag @video.user.account.image, client_hints: true, transformation: [ 

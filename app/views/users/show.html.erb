@@ -13,7 +13,7 @@
       </div>
       <div class="stats">
         <span><%= @user.videos.count %> Videos</span> | 
-        <span><%= @user.account.balance %> Minutes</span>
+        <span><%= @user.account.balance/60 %> Minutes</span>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
 
 <hr>
 <div class="row">
-  <% @user.videos.each do |video| %>
+  <% @user_videos.each do |video| %>
     <div class="col-md-4">
       <div class="br-card">
         <%= link_to video_path(video), class: "br-card-link" do %>

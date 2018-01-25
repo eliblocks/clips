@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
       elsif request.env['omniauth.origin'].include?('preview')
         video_id = request.env['omniauth.origin'].match(/\/\d+/).to_s[1..-1]
         video_path(video_id)
+      elsif request.env['omniauth.origin'].include?('upload')
+        new_video_path
       else
         request.env['omniauth.origin']
       end
