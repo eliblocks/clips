@@ -6,24 +6,8 @@
     <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
 
     <title><%= full_title(yield(:title)) %></title>
-    <% if current_page?(new_user_registration_path) %>
-      <!-- Event snippet for Sign Up conversion page -->
-      <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-            'send_to': 'AW-826306890/0IadCM31vHkQyuKBigM',
-            'event_callback': callback
-        });
-        return false;
-      }
-      </script>
-    <% end %>
 
+    <%= render 'layouts/gtag' %>
     <%= csrf_meta_tags %>
     <%= description_meta_tag(yield(:description)) %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -31,15 +15,7 @@
 
     <script src="https://content.jwplatform.com/libraries/nS0lyy3E.js"> </script>
     <script src="https://js.braintreegateway.com/web/dropin/1.8.0/js/dropin.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110066951-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-110066951-1');
-      gtag('config', 'AW-826306890');
-    </script>
+    
   </head>
 
 <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
@@ -52,7 +28,7 @@
         <%= yield %>
       </main>
       <%= render 'layouts/footer' %>
-      <%= render 'shared/auth_modal' %>
+      <%= render 'shared/auth_modal' unless user_signed_in? %>
     <% else %>
       <%= yield %>
     <% end %>
@@ -61,9 +37,6 @@
 
 
 
-
-<!-- Event snippet for Sign Up conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 
 
 

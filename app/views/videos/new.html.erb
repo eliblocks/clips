@@ -41,3 +41,22 @@
     <%= link_to 'Continue', library_path, class: "btn btn-primary", id: "continue" %>
   </div>
 </div>
+
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-826306890/RYiACO-80nsQyuKBigM',
+        'event_callback': callback
+    });
+    return false;
+  }
+  $(".video-upload").click(function() {
+    gtag_report_conversion();
+    console.log("upload conversion reported");
+  });
+</script>
