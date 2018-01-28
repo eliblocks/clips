@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     @videos = Video.includes(:user)
-    .where.not(removed: true)
+    .featured
     .order(created_at: :desc)
     .page(params[:page])
     .per(12)
@@ -49,6 +49,7 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)
     @video.user = current_user
     @video.image = Rails.configuration.default_image
+    @video.featured = true
     if @video.save
       puts "Success!"
     else
