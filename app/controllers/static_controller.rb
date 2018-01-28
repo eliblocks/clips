@@ -19,4 +19,13 @@ class StaticController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def upload
+    version = params[:v]
+    if version == '2'
+      render 'static/upload2'
+    elsif version == '3'
+      render 'static/upload3'
+    end
+  end
 end

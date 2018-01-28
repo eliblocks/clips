@@ -1,0 +1,29 @@
+<% provide(:description, 
+  "Monetize your videos with pay per minute streaming. Upload and embed on your site and earn &cent;.7 for every minute watched.") %> 
+<nav class="navbar bg-green">
+  <%= image_tag "/aboutica_logo_white.png", width: 116, height: 21, class: "mb-1" %>
+</nav>
+
+<div class="jumbotron bg-green jumbotron-fluid">
+  <div class="row">
+    <div class="col-md-9 m-auto text-center"> 
+      <h1 class="home-title text-white">Earn 100x More Than Youtube</h1>
+      <h2 class="home-subtitle text-white">Upload your videos and get paid &cent;.7 for every minute watched.</h2>
+      <%= link_to "Sign up with Facebook to upload", 
+            user_facebook_omniauth_authorize_path, 
+            class: "facebook-button", 
+            id: "landing-button", 
+            type: "uploader" %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 m-auto">
+      <h4>How it Works</h4>
+      <p class="lead">Aboutica charges users &cent;1 for every minute they spend watching videos on the site. Simply direct your viewers to your Aboutica page, and they will get 100 free minutes to start watching right away. 
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
+<%= render 'layouts/signup_tracking' %>
