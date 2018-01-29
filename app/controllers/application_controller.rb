@@ -9,16 +9,19 @@ class ApplicationController < ActionController::Base
 
   protected
     def after_sign_in_path_for(resource)
+      origin_url = request.env['omniauth.origin']
       if request.referrer && request.referrer.gsub(/\?.*/, '') == landing_url
         video_id = params['video_id']
         embed_path(video_id) || root_path
-      elsif request.env['omniauth.origin'].include?('preview')
-        video_id = request.env['omniauth.origin'].match(/\/\d+/).to_s[1..-1]
+      elsif origin_url && origin_url.include?('preview')
+        video_id = origin_url.match(/\/\d+/).to_s[1..-1]
         video_path(video_id)
-      elsif request.env['omniauth.origin'].include?('upload')
+      elsif origin_url && origin_url.include?('upload')
         new_video_path
+      elsif origin_url
+        origin_url
       else
-        request.env['omniauth.origin']
+        root_url
       end
     end
 

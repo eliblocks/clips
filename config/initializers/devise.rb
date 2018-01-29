@@ -253,7 +253,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   ENV['CLIPS_FACEBOOK_ID'],
                   ENV['CLIPS_FACEBOOK_SECRET'],
-                  info_fields: 'link'
+                  info_fields: 'id,cover,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified,email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

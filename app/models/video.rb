@@ -33,16 +33,16 @@ class Video < ApplicationRecord
 
   def policy
     {
-       "Statement" => [
-          {
-             "Resource" => cloudfront_url,
-             "Condition" => {
-                "DateLessThan" => {
-                   "AWS:EpochTime" => 1.days.from_now.to_i
-                }
-             }
-          }
-       ]
+      "Statement" => [
+        {
+           "Resource" => cloudfront_url,
+           "Condition" => {
+              "DateLessThan" => {
+                 "AWS:EpochTime" => 1.days.from_now.to_i
+              }
+           }
+        }
+      ]
     }
   end
 
