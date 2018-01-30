@@ -101,7 +101,7 @@ class VideosController < ApplicationController
   end
 
   def search
-    @videos = Video
+    @videos = Video.viewable
     .search(params[:q], page: params[:page])
     render 'index'
   end

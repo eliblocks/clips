@@ -4,7 +4,6 @@ class Account < ApplicationRecord
   has_many :charges
   has_many :payments
 
-
   def subtract_balance(play)
     new_balance = balance - play.duration
     update(balance: new_balance)
@@ -116,7 +115,6 @@ class Account < ApplicationRecord
       .sum(:duration)
   end
 
-
   def most_earned_videos(num_videos, num_days)
     top_videos = video_earnings_last(num_days).sort_by { |k,v| v}.reverse!.first(num_videos).to_h
     top_videos.transform_keys { |k| Video.find(k) }
@@ -131,7 +129,6 @@ class Account < ApplicationRecord
     top_watches = video_plays_last(num_days).sort_by { |k,v| v }.reverse!.first(num_videos).to_h
     top_watches.transform_keys { |k| Video.find(k) }
   end
-
 
   def total_minutes_earned
     if seconds_earned

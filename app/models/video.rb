@@ -9,7 +9,8 @@ class Video < ApplicationRecord
   scope :unremoved, -> { where(removed: false) }
   scope :listed, -> { where(public: true) }
   scope :featured, -> { where(featured: true) }
-  scope :movies, -> { where.not(imdb_id: nil)}
+  scope :movies, -> { where.not(imdb_id: nil) }
+  scope :viewable, -> { unremoved.where(suspended: false) }
 
   algoliasearch per_environment: true do
     attribute :title, :views
@@ -49,6 +50,19 @@ class Video < ApplicationRecord
   def remove
     update(removed: true, approved: false, featured: false)
   end
+
+  def suspend
+    update(approved: false, suspended: true, featured: false)
+  end
+
+  def approve
+    update(approved: true, suspended: false)
+  end
+
+  def feature
+    update(approved: true, suspended: false, featured: true)
+  end
+
 
   def remove_or_destroy
     plays.any? ? remove : destroy
