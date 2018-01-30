@@ -26,8 +26,8 @@ class Account < ApplicationRecord
     "#{Video.cl_base_url}/#{image_id}"
   end
 
-  def add_balance(seconds)
-    new_balance = balance + seconds
+  def add_balance(play)
+    new_balance = balance + (play.duration * (1 - Rails.configuration.commission))
     update(balance: new_balance)
   end
 
