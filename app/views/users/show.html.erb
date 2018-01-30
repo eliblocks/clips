@@ -12,7 +12,7 @@
         <h4><%= @user.full_name %></h4>
       </div>
       <div class="stats">
-        <span><%= @user.videos.count %> Videos</span> | 
+        <span><%= @user.videos.viewable.count %> Videos</span> | 
         <span><%= number_to_human(@user.account.balance/60) %> Minutes</span>
       </div>
     </div>
