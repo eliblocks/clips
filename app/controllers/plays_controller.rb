@@ -9,6 +9,7 @@ class PlaysController < ApplicationController
       print "user#{current_user}"
       print "account: #{current_user.account}"
       current_user.account.subtract_balance(@play)
+      @video.user.account.add_balance(@play.duration)
     else
       print @play.errors.full_messages
     end
