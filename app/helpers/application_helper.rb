@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title = '')
-    base_title = "Aboutica"
+    base_title = "Browzable"
     if page_title.empty?
       base_title
     else

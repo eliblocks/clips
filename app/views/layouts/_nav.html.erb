@@ -5,7 +5,7 @@
     <div class="browzable-brand">
 
       <%= link_to root_path do %>
-        <%= image_tag "/aboutica_logo_black.png", width: 116, height: 21, class: "mb-1 br-logo" %>
+        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
       <% end %>
       <span class="dot-separator">&#8226;</span>
       <%= link_to(number_to_human(current_user.account.balance/60), 
@@ -61,7 +61,7 @@
 <% else %>
   <nav class="navbar navbar-expand navbar-light bg-light">
     <%= link_to root_path, class: "br-icon" do %>
-        <%= image_tag "/aboutica_logo_black.png", width: 116, height: 21, class: "mb-1 br-logo" %>
+        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
       <% end %>
 
     <!-- <ul class="navbar-nav">
