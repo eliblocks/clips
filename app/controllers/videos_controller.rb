@@ -8,7 +8,7 @@ class VideosController < ApplicationController
   def index
     @videos = Video.includes(:user)
     .featured
-    .order(created_at: :desc)
+    .order(views: :desc, created_at: :desc)
     .page(params[:page])
     .per(12)
     @test_users = test_users
@@ -50,7 +50,6 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)
     @video.user = current_user
     @video.image = Rails.configuration.default_image
-    @video.featured = true
     if @video.save
       puts "Success!"
     else
