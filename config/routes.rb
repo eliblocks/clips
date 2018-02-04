@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'upload', to: 'static#upload'
 
 
+
   get 'sessions/impersonate', to: 'sessions#impersonate'
 
 
@@ -69,9 +70,11 @@ Rails.application.routes.draw do
     get 'sessions/:id', to: 'sessions#impersonate', as: "impersonate"
   end
 
+
   devise_scope :user do
       namespace :users do
         get 'sessions/present', to: "sessions#present"
+        get 'test_login/:id', to: 'sessions#test_login', as: "test_login"
       end
   end
 end

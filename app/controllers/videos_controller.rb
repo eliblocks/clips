@@ -11,6 +11,7 @@ class VideosController < ApplicationController
     .order(created_at: :desc)
     .page(params[:page])
     .per(12)
+    @test_users = test_users
   end
 
   # GET /videos/1
@@ -130,5 +131,12 @@ class VideosController < ApplicationController
     def video_params
       params.require(:video).permit(:title, :description, :duration, :price,
                     :approved, :clip, :balance, :views, :user_id, :imdb_id, :public)
+    end
+
+    def test_users
+      test_uids = ["108116283341322", "113454752806178", "118849962265351", "102626340558548", "112712999547131"]
+      @test_users = User.where(uid: test_uids)
+      @test_users.select { |user| user.account.plays.last == nil ||
+                                  user.account.plays.last.created_at < 5.minutes.ago }
     end
 end

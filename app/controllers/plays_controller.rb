@@ -8,8 +8,8 @@ class PlaysController < ApplicationController
       @video.update_views(@play)
       print "user#{current_user}"
       print "account: #{current_user.account}"
-      current_user.account.subtract_balance(@play)
-      @video.user.account.add_balance(@play)
+      current_user.account.debit_play(@play)
+      @video.user.account.credit_play(@play)
     else
       print @play.errors.full_messages
     end

@@ -16,12 +16,18 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+
   def present
     if user_signed_in?
       render json: { "logged_in" => "true" }
     else
       render json: { "logged_in" => "false"}
     end
+  end
+
+  def test_login
+    @user = User.find(params[:id])
+    sign_in_and_redirect @user
   end
 
   # protected

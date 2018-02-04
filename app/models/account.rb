@@ -4,11 +4,6 @@ class Account < ApplicationRecord
   has_many :charges
   has_many :payments
 
-  def subtract_balance(play)
-    new_balance = balance - play.duration
-    update(balance: new_balance)
-  end
-
   def image_id
     image.split('/')[1]
   end
@@ -25,9 +20,19 @@ class Account < ApplicationRecord
     "#{Video.cl_base_url}/#{image_id}"
   end
 
-  def add_balance(play)
-    new_balance = balance + (play.duration * (1 - Rails.configuration.commission))
+  def update_balance(seconds)
+    new_balance = balance + seconds
     update(balance: new_balance)
+  end
+
+  def debit_play(play)
+    seconds = -play.duration
+    update_balance(seconds)
+  end
+
+  def credit_play(play)
+    seconds = play.duration * (1 - Rails.configuration.commission )
+    update_balance(seconds)
   end
 
   def receivable
@@ -38,16 +43,6 @@ class Account < ApplicationRecord
       0
     end
   end
-
-  def watch_video(video, count)
-    count.times {
-      play = Play.create!(video_id: video.id, account_id: id, duration: 10)
-      video.update_views(play)
-      subtract_balance(play)
-    }
-  end
-
-  #copied from videos project
 
   def uploader?
     user.videos.any?
@@ -137,5 +132,4 @@ class Account < ApplicationRecord
       return 0
     end
   end
-
 end
