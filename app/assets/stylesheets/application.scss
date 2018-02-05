@@ -6,6 +6,11 @@
 @import "embeds";
 @import "accounts";
 
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$extralarge: 1200px;
+
 html {
   position: relative;
   min-height: 100%;
@@ -154,7 +159,7 @@ input[type='file'] {
   justify-content: flex-end;
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(sm) {
 
   .link-container {
     font-size: .75rem;
@@ -241,11 +246,13 @@ input[type='file'] {
   width: 20em;
 }
 
-.search-nav {
-  margin-left: 4rem;
+@include media-breakpoint-only(xl) {
+  .search-nav {
+    margin-left: 4rem;
+  }
 }
 
-@media (max-width:1070px) and (min-width:990px) {
+@include media-breakpoint-only(lg) {
   #search-input {
     width: 15em;
   }

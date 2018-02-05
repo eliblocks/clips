@@ -37,14 +37,17 @@ $(document).on("turbolinks:load", function() {
   jwplayer().on('time', function(time) {
     counter += time.position - prevPosition;
     prevPosition = time.position;
+
+    if (counter > (playDuration + 1) || counter < 0 ) {
+      counter = 0
+    }
+
     if (counter > playDuration) {
       sendPlay();
       counter -= playDuration;
     }
-  });
 
-  jwplayer().on('seeked', function() {
-    counter = 0;
+    console.log("counter: ", counter);
   });
  
 
@@ -58,12 +61,11 @@ $(document).on("turbolinks:load", function() {
       data: playData,
       dataType: "html"
     });
-    console.log(request);
-    console.log(balance);
-
+    
     request.done(function( msg ) {
       updateBalance();
     });
+    console.log("balance: ", balance);
   }
 
   function updateBalance () {

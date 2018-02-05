@@ -23,9 +23,9 @@
           <div class="input-group search-group">
             <%= text_field_tag(:q, "", class: "search-control form-control", 
                                 placeholder: params[:q], id: "search-input") %>
-            <span class="input-group-append">
+            <div class="input-group-append">
               <button type="submit" class="btn btn-secondary"><%= fa_icon "search" %></button>
-            </span>
+            </div>
           </div>
         <% end %>
       </div>
