@@ -21,7 +21,7 @@ $(document).on("turbolinks:load", function() {
   });
 
   jwplayer().on('ready', function() {
-    var playerBalance = $(".minutes-balance").clone();
+    var playerBalance = $(".minutes-balance")
     
     $(".jw-spacer").after(playerBalance);
     playerBalance.show();
@@ -46,8 +46,6 @@ $(document).on("turbolinks:load", function() {
       sendPlay();
       counter -= playDuration;
     }
-
-    console.log("counter: ", counter);
   });
  
 
@@ -64,8 +62,9 @@ $(document).on("turbolinks:load", function() {
     
     request.done(function( msg ) {
       updateBalance();
+      console.log("balance: ", balance);
     });
-    console.log("balance: ", balance);
+    
   }
 
   function updateBalance () {
@@ -74,5 +73,6 @@ $(document).on("turbolinks:load", function() {
       window.location.href = "/charges/new";
     }
     $("#balance")[0].innerHTML = Math.floor(balance/60);
+    $("#logo-balance")[0].innerHTML = Math.floor(balance/60);
   }
 });

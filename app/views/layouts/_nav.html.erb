@@ -9,7 +9,7 @@
       <% end %>
       <span class="dot-separator">&#8226;</span>
       <%= link_to(number_to_human(current_user.account.balance/60), 
-                  root_path, class: "br-balance") %>
+                  root_path, class: "br-balance", id: "logo-balance") %>
     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
