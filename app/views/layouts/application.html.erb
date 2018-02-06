@@ -18,7 +18,7 @@
     
   </head>
 
-<%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
+  <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
     <% unless params[:controller] == "embeds" || params[:action] == "upload" %> 
       <%= render 'layouts/nav' %>
       <main class="container">

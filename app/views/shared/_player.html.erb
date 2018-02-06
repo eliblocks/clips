@@ -9,6 +9,6 @@
     </div>
   <% end %>
 </div>
-<%= content_tag :div, "", class: "browzable-wrapper mt-3", data: { url: @video.signed_cloudfront_url, video_id: @video.id } do %>
+<%= content_tag :div, "", class: "browzable-wrapper", data: { url: @video.signed_cloudfront_url, video_id: @video.id } do %>
   <div id="browzable-video"></div>
 <% end %>
