@@ -136,6 +136,6 @@ class VideosController < ApplicationController
       test_uids = ["108116283341322", "113454752806178", "118849962265351", "102626340558548", "112712999547131"]
       @test_users = User.where(uid: test_uids)
       @test_users.select { |user| user.account.plays.last == nil ||
-                                  user.account.plays.last.created_at < 5.minutes.ago }
+                                  user.account.plays.last.created_at < 2.minutes.ago }
     end
 end
