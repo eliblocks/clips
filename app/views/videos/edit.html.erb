@@ -3,16 +3,19 @@
 
 <div class="row">
   <div class="col-md-4">
-    <%= link_to video_path(@video) do %>
-      <%= cl_image_tag(@video.image, :client_hints=>true, :transformation=>[
-      {:aspect_ratio=>"16:9", :gravity=>"auto", :crop=>"fill"},
-      {:width=>"auto", :quality=>"auto", :fetch_format=>:auto, :crop=>"scale"}
-      ], class: "img-fluid preview-image") %>
-    <% end %>
-    <div class="preview-loader"></div>
+    <div class="preview-container">
+      <%= link_to video_path(@video) do %>
+        <%= cl_image_tag(@video.image, :client_hints=>true, :transformation=>[
+        {:aspect_ratio=>"16:9", :gravity=>"auto", :crop=>"fill"},
+        {:width=>"auto", :quality=>"auto", :fetch_format=>:auto, :crop=>"scale"}
+        ], class: "img-fluid preview-image") %>
+        
+      <% end %>
+      <div class="preview-loader"></div>
+    </div>
     <div>
       <label for="preview-upload" class="btn btn-secondary upload-preview-btn mt-1">Change preview</label>   
-      <%= cl_image_upload_tag(:image_id, aria_hidden: true) %>
+      
     </div>
     <div class="embed-code-container bg-light">
       <h5>Link</h5>
@@ -25,7 +28,6 @@
   <div class="col-md-7 offset-md-1">
     <h4>Edit <%= @video.title %></h4>
     <%= form_with(model: @video, local: true) do |form| %>
-      
       <div class="form-group">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control" %>
@@ -47,9 +49,9 @@
       <div class="form-group">
         <%= form.submit "Save", class: "btn btn-primary mt-3" %>
       </div>
-      
-
+      <%= cl_image_upload_tag(:image_id, aria_hidden: true) %>
     <% end %>
+
     <div class="delete-section mb-auto">
       <hr>
       <%= link_to "Delete Video", 
@@ -63,7 +65,6 @@
 </div>
 <script>
   $(document).on("turbolinks:load", function() {
-
     $(".cloudinary-fileupload").attr("id", "preview-upload");
     
     if($.fn.cloudinary_fileupload !== undefined) {
@@ -72,7 +73,8 @@
       });
 
       $('.cloudinary-fileupload').bind('fileuploadadd', function(e, data) { 
-        $(".loader").show();
+        console.log("loading");
+        $(".preview-loader").show();
       });
 
       $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {  
@@ -81,12 +83,10 @@
         var version = data.result.version;
         var tail = "/v" + version + "/" + id + "." + format;
         var oldUrl = $(".preview-image").attr("src");
-
-        console.log(oldUrl);
         var newUrl = oldUrl.replace(/\/v.*$/, tail);
-        // var url = "https://res.cloudinary.com/eli/image/upload/w_200/v" + version + "/" + id + "." + format;
+        console.log("new URL: ", newUrl);
         $(".preview-image").attr("src", newUrl);
-        $(".loader").hide();
+        $(".preview-loader").hide();
         console.log(id, format, version);
       });
     }
