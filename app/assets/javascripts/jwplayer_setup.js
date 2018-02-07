@@ -21,6 +21,7 @@ $(document).on("turbolinks:load", function() {
   });
 
   jwplayer().on('ready', function() {
+    console.log("player ready");
     var playerBalance = $(".minutes-balance")
     
     $(".jw-spacer").after(playerBalance);

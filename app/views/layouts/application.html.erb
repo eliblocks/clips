@@ -7,6 +7,10 @@
 
     <title><%= full_title(yield(:title)) %></title>
 
+    <% if params[:controller] == 'videos' && params[:action] == 'show' %>
+      <meta name="turbolinks-cache-control" content="no-cache">
+    <% end %>
+
     <%= render 'layouts/gtag' %>
     <%= csrf_meta_tags %>
     <%= description_meta_tag(yield(:description)) %>
