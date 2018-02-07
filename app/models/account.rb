@@ -86,7 +86,12 @@ class Account < ApplicationRecord
   end
 
   def seconds_earned
-    user.videos.pluck(:views).reduce(:+) || 0
+    views = user.videos.pluck(:views).reduce(:+) || 0
+    views * (1 - Rails.configuration.commission)
+  end
+
+  def calculated_balance
+    seconds_purchased - seconds_played - seconds_paid + 6000 + seconds_earned
   end
 
   def video_earnings_last(n)
