@@ -2,11 +2,17 @@
   <div class="signup-form">  
     <h4 class="text-center">Premium Video</h4>
     <p class="text-center">Sign up with Browzable and get free minutes to view this video</p>
+      
     <div class="embedded-links">
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary", target: "blank", ref: @video.id %>
-       <span class="mr-4 ml-4">Or</span>
-       <%= link_to "Log in", new_user_session_path, class: "btn btn-primary", target: "blank" %>
-     </div>
+      <%= link_to "Continue with Facebook", 
+            user_facebook_omniauth_authorize_path, 
+            class: "facebook-button", 
+            id: "landing-button",
+            target: "blank" %>
+      <%#= link_to "Sign up", new_user_registration_path, class: "btn btn-primary", target: "blank", ref: @video.id %>
+       <!-- <span class="mr-4 ml-4">Or</span> -->
+       <%#= link_to "Log in", new_user_session_path, class: "btn btn-primary", target: "blank" %>
+    </div>
   </div>
   <div class="video-background">
 

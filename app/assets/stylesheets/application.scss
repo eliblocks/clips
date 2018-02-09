@@ -5,6 +5,7 @@
 @import "users";
 @import "embeds";
 @import "accounts";
+@import "movies";
 
 $small: 576px;
 $medium: 768px;
@@ -313,6 +314,7 @@ input[type='file'] {
   box-sizing: border-box;
 
   text-decoration: none;
+  z-index: 10;
 }
 
 .facebook-button:before {
