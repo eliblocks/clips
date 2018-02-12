@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :plays
   resources :embeds
+  resources :movies
 
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
   get 'video_test/:id', to: 'video_test#show'
   get 'buy_message', to: 'embeds#buy_message'
   get 'thank_you', to: 'embeds#thank_you'
+  get 'logged_in', to: 'embeds#logged_in'
   get 'stats', to: 'static#stats'
   get 'upload', to: 'static#upload'
   get 'dmca', to: 'static#dmca'
