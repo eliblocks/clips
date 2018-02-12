@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'thank_you', to: 'embeds#thank_you'
   get 'stats', to: 'static#stats'
   get 'upload', to: 'static#upload'
-
+  get 'dmca', to: 'static#dmca'
 
 
   get 'sessions/impersonate', to: 'sessions#impersonate'
