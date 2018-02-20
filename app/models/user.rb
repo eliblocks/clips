@@ -37,4 +37,9 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def create_movie!(imdb_id, s3_id=nil)
+    video = self.videos.create!(imdb_id: imdb_id, s3_id: s3_id, featured: true)
+    video.update_from_omdb
+  end
 end

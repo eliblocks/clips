@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root to: 'accounts#dashboard', constraints:
   #   lambda { |request| request.env['warden'].user.uploader? }
 
-  root to: 'videos#index'
+  root to: 'movies#index'
 
   devise_for :users, controllers: { sessions: 'users/sessions',
                                   registrations: "users/registrations",

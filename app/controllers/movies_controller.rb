@@ -41,9 +41,12 @@ class MoviesController < ApplicationController
         private_key: ENV["CLOUDFRONT_PRIVATE_KEY"]
       )
 
+
       url = "https://*.browzable.com/*"
 
+
       cloudfront_cookies = signer.signed_cookie(url, policy: cookie_policy.to_json)
+      puts cloudfront_cookies
 
       cookies['CloudFront-Policy'] = {
         value: cloudfront_cookies['CloudFront-Policy'],
@@ -60,8 +63,8 @@ class MoviesController < ApplicationController
         domain: :all,
         expires: 1.days.from_now
       }
-      cookies['Test-One'] = {
-        value: 'something',
+      cookies['Test-Cookie'] = {
+        value: 'foo',
         domain: :all,
         expires: 1.years.from_now
       }

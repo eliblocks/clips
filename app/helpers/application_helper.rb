@@ -48,7 +48,8 @@ module ApplicationHelper
   def popover_content(video)
     <<~HEREDOC
       <h2 class="popover-title">#{video.title}</h2>
-      <span>R | #{video.runtime} | #{video.language}
+      <span>#{video.movie_rating} | #{video.runtime || ''} min | #{video.published_at.year if video.published_at} <br>
+      #{video.tag_list}
       <hr>
       <p class="popover-description">#{video.description}</p>
     HEREDOC

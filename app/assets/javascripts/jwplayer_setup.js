@@ -4,7 +4,7 @@ $(document).on("turbolinks:load", function() {
   var controller = $("body").data("controller");
   var action = $("body").data("action");
 
-  if ((controller !== "videos" && controller !== "embeds") || action !== "show") {
+  if ((controller !== "videos" && controller !== "embeds" && controller !== "movies") || action !== "show") {
     return;
   }
 
@@ -17,7 +17,10 @@ $(document).on("turbolinks:load", function() {
   
   playerInstance.setup({
     autostart: "true",
-    file: $(".browzable-wrapper").data("url")
+    playlist: [{
+      file: $(".browzable-wrapper").data("url"),
+      withCredentials: true
+    }]
   });
 
   jwplayer().on('ready', function() {
@@ -73,7 +76,18 @@ $(document).on("turbolinks:load", function() {
     if (balance < 10) {
       window.location.href = "/charges/new";
     }
-    $("#balance")[0].innerHTML = Math.floor(balance/60);
-    $("#logo-balance")[0].innerHTML = Math.floor(balance/60);
+
+    $("#balance")[0].innerHTML = Math.round(balance/60);
+    $("#logo-balance")[0].innerHTML = Math.round(balance/60);
   }
+
+  // // must change if rate changes
+  // function displayBal(balance) {
+  //   if (balance > 5999) {
+  //     return (balance/60/1000).toFixed(2) + 'K'
+  //   } else {
+  //     return Math.floor(balance/60);
+  //   }
+  // }
+
 });

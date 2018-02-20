@@ -8,7 +8,7 @@
         <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
       <% end %>
       <span class="dot-separator">&#8226;</span>
-      <%= link_to(number_to_human(current_user.account.balance/60), 
+      <%= link_to(current_user.account.balance/60, 
                   root_path, class: "br-balance", id: "logo-balance") %>
     </div>
 
