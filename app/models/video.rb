@@ -7,7 +7,7 @@ class Video < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, dependent: :destroy
 
-  validates :imdb_id, uniqueness: true
+  validates :imdb_id, uniqueness: true, allow_nil: true
 
   scope :approved, -> { where(approved: true) }
   scope :unremoved, -> { where(removed: false) }
