@@ -4,8 +4,8 @@ class Video < ApplicationRecord
 
   belongs_to :user
   has_many :plays
-  has_many :taggings
-  has_many :tags, through: :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings, dependent: :destroy
 
   validates :imdb_id, uniqueness: true
 
