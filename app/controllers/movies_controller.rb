@@ -25,11 +25,11 @@ class MoviesController < ApplicationController
     end
   end
 
-  # def search
-  #   @videos = Video
-  #   .search(params[:q], page: params[:page])
-  #   render 'index'
-  # end
+  def search
+    @movies = Video.movies
+    .search(params[:q], page: params[:page])
+    render 'index'
+  end
 
   private
 

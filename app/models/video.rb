@@ -63,7 +63,7 @@ class Video < ApplicationRecord
     video_attrs = attrs[0]
     genres = attrs[1]
     update!(video_attrs)
-    self.tag_list = genres
+    self.tag_list = genres if genres
   end
 
   def movie_rating
@@ -118,6 +118,11 @@ class Video < ApplicationRecord
     plays.any? ? remove : destroy
   end
 
+  def delete_plays_and_destroy
+    plays.all.each(&:destroy)
+    self.destroy
+  end
+
   def update_views(play)
     new_views = views + play.duration
     update(views: new_views)
@@ -159,4 +164,5 @@ class Video < ApplicationRecord
   def seconds_played
     plays.sum(:duration) || 0
   end
+
 end
