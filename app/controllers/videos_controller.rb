@@ -11,7 +11,7 @@ class VideosController < ApplicationController
     .order(views: :desc, created_at: :desc)
     .page(params[:page])
     .per(15)
-    @test_users = test_users
+    # @test_users = test_users
   end
 
   # GET /videos/1

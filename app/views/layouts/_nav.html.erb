@@ -31,7 +31,7 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to "Upload", new_video_path, class: "btn btn-primary mr-2" %>
+          <%= nav_link "Upload", new_video_path %>
         </li>  
         <% if current_user.videos.any? %>
           <li class="nav-item">
@@ -71,9 +71,6 @@
     </ul> -->
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item upload-ad">
-        <%= link_to "Upload", new_video_path, class: "auth-link mr-3 btn btn-primary" %>
-      </li>
       <li class="nav-item">
         <a href="#" class="nav-link auth-link">Log in</a>
       </li>

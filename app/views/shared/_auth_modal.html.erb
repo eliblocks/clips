@@ -12,13 +12,13 @@
                 user_facebook_omniauth_authorize_path, 
                 class: "facebook-button landing-button", 
                 id: "auth-button" %>
-        <% if @test_users %>
-          <hr>
-          Test accounts:<br>
-          <% @test_users.each do |user| %>
-            <%= link_to user.full_name, users_test_login_path(user.id) %><br>
-          <% end %>
-        <% end %>
+        <%# if @test_users %>
+          <!-- <hr>
+          Test accounts:<br> -->
+          <%# @test_users.each do |user| %>
+            <%#= link_to user.full_name, users_test_login_path(user.id) %>
+          <%# end %>
+        <%# end %>
 
       </div>
     </div>
