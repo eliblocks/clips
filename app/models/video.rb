@@ -163,7 +163,7 @@ class Video < ApplicationRecord
   end
 
   def duration
-    return 0 unless clip.metadata['duration']
+    return 0 unless clip && clip.metadata['duration']
     clip.metadata['duration'].round
   end
 

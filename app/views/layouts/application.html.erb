@@ -25,12 +25,16 @@
   <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
     <% unless params[:controller] == "embeds" || params[:action] == "upload" %> 
       <%= render 'layouts/nav' %>
-      <main class="container">
-        <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-        <% end %>
+      <% if params[:controller] == 'movies' && params[:action] == 'show' %>
         <%= yield %>
-      </main>
+      <% else %>
+        <%= content_tag :main, class: "container" do %>
+          <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+          <% end %>
+          <%= yield %>
+        <% end %>
+      <% end %>
       <%= render 'layouts/footer' %>
       <%= render 'shared/auth_modal' unless user_signed_in? %>
     <% else %>

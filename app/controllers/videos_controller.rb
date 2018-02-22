@@ -118,7 +118,6 @@ class VideosController < ApplicationController
       unless user_signed_in?
         redirect_to preview_video_path
       end
-
     end
 
     # Use callbacks to share common setup or constraints between actions.

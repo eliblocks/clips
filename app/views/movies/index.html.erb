@@ -26,8 +26,7 @@
 <% unless user_signed_in? %>
   <script>
     $(".br-card-img-link").click(function(e) {
-      e.preventDefault();
-      $('#login-modal').modal();
+      authModal(e);
     });
   </script>
 <% end %>
