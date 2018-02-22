@@ -60,14 +60,32 @@ class Video < ApplicationRecord
 
   def update_from_omdb
     attrs = imdb_attrs
+    puts "updating #{attrs[0][:title]}"
     video_attrs = attrs[0]
+    image_from_tmdb = tmdb_image
+    puts "image: #{image_from_tmdb}"
+    video_attrs.merge!({image: image_from_tmdb}) if image_from_tmdb
     genres = attrs[1]
+    puts "attrs #{video_attrs}"
     update!(video_attrs)
     self.tag_list = genres if genres
   end
 
   def movie_rating
     rating == "N/A" ? "Unrated" : rating
+  end
+
+  def tmdb_image
+    base_url = "https://image.tmdb.org/t/p/"
+    size = "w370_and_h556_bestv2"
+    path = tmdb_image_path
+    path.nil? ? nil : base_url + size + path
+  end
+
+  def tmdb_image_path
+    response = HTTParty.get("https://api.themoviedb.org/3/find/tt#{imdb_id}?api_key=#{ENV['TMDB_SECRET']}&language=en-US&external_source=imdb_id")
+    movie_results = response.parsed_response['movie_results']
+    movie_results.empty? ? nil : movie_results[0]['poster_path']
   end
 
   def signed_cloudfront_url

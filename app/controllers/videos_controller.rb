@@ -10,7 +10,7 @@ class VideosController < ApplicationController
     .featured
     .order(views: :desc, created_at: :desc)
     .page(params[:page])
-    .per(12)
+    .per(15)
     @test_users = test_users
   end
 

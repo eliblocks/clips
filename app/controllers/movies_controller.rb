@@ -5,9 +5,9 @@ class MoviesController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @movies = Video.movies
+    @movies = Video.movies.order(:rank)
     .page(params[:page])
-    .per(12)
+    .per(36)
   end
 
   # GET /videos/1
@@ -39,9 +39,7 @@ class MoviesController < ApplicationController
         private_key: ENV["CLOUDFRONT_PRIVATE_KEY"]
       )
 
-
       url = "https://*.browzable.com/*"
-
 
       cloudfront_cookies = signer.signed_cookie(url, policy: cookie_policy.to_json)
       puts cloudfront_cookies
