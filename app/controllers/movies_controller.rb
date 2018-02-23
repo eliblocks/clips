@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy, :remove, :restore]
-  before_action :redirect_to_sign_up, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :preview]
+  before_action :redirect_to_root, only: [:new, :edit, :update, :destroy]
+  before_action :redirect_to_preview, only: [:show]
 
   # GET /videos
   # GET /videos.json
@@ -29,6 +30,9 @@ class MoviesController < ApplicationController
     @movies = Video.movies
     .search(params[:q], page: params[:page])
     render 'index'
+  end
+
+  def preview
   end
 
   private
@@ -83,10 +87,15 @@ class MoviesController < ApplicationController
       Base64.encode64(cookie_policy.to_json)
     end
 
-    def redirect_to_sign_up
+    def redirect_to_root
       unless user_signed_in?
-        flash[:notice] = "Sign up or log in to watch"
-        redirect_to new_user_session_path
+        redirect_to root_path
+      end
+    end
+
+    def redirect_to_preview
+      unless user_signed_in?
+        redirect_to preview_movie_path
       end
     end
     # Use callbacks to share common setup or constraints between actions.

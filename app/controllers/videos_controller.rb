@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy, :remove, :restore, :preview]
-  before_action :redirect_to_sign_in, only: [:new, :edit, :update, :destroy]
+  before_action :redirect_to_root, only: [:new, :edit, :update, :destroy]
   before_action :redirect_to_preview, only: [:show]
 
   # GET /videos
@@ -108,7 +108,7 @@ class VideosController < ApplicationController
 
   private
 
-    def redirect_to_sign_in
+    def redirect_to_root
       unless user_signed_in?
         redirect_to root_path
       end

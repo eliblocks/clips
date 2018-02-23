@@ -8,7 +8,7 @@ output_bucket = s3.bucket('browzable-movies-output')
 job_template = "arn:aws:mediaconvert:us-west-1:121996608541:jobTemplates/hq_only"
 queue = "arn:aws:mediaconvert:us-west-1:121996608541:queues/Default"
 role = "arn:aws:iam::121996608541:role/media-convert"
-input_key = "White Raven_1080_ProRes_6channel.mov"
+input_key = "The Infinite Man_Feature_24fps_st.mov"
 file_input = "s3://#{input_bucket.name}/#{input_key}"
 
 

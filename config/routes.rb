@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   resources :plays
   resources :embeds
-  resources :movies
+  resources :movies do
+    member do
+      get 'preview'
+    end
+  end
 
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
