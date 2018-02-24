@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-    @amount = "10.00"
+    @amount = "5.00"
     result = attempt_sale(@amount, params[:nonce])
     if result.success?
       puts "success!: #{result.transaction.id}"

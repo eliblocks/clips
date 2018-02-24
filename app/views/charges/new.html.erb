@@ -2,7 +2,7 @@
 
 <div class="row mt-3">
   <div class="col-md-6 m-auto">
-    <h2>Buy 1,000 minutes for $10</h2>
+    <h2>Buy 500 minutes for $5</h2>
     <div class="card mt-3 bg-info text-white">
       <div class="card-body">
         Browzable minutes let you stream any movie on the site, and are valid for a full year.
@@ -15,7 +15,7 @@
     <div id="dropin-container"></div>
     <%= form_with model: Charge.new, id: "charge-form", local: true do |form| %>
       <%= hidden_field_tag 'nonce' %>
-      <button type="button" id="submit-button" class="btn btn-primary">Pay $10</button>
+      <button type="button" id="submit-button" class="btn btn-primary">Pay $5</button>
     <% end %>
   </div>
 </div>

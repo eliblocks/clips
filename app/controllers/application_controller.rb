@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     current_user.account
   end
 
+  def authenticate_facebook
+    redirect_to root_url unless user_signed_in?
+  end
+
   protected
     def after_sign_in_path_for(resource)
       origin_url = request.env['omniauth.origin']

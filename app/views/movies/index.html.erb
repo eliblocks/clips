@@ -3,7 +3,9 @@
     <div class="col-xl-2 col-lg-3 col-sm-4 col-6 movie-col">
       <div class="movie-card text-center" 
           data-toggle="popover" 
-          data-content="<%= popover(movie) %>">
+          data-content="<%= popover(movie) %>"
+          itemscope 
+          itemtype="http://schema.org/Movie">
         <%= link_to movie_path(movie), class: "br-card-img-link" do %>
           <%= cl_image_tag(movie.image, :client_hints=>true, :transformation=>[
           {:aspect_ratio=>"2:3", :gravity=>"auto", :crop=>"fill"},
@@ -20,6 +22,8 @@
     <%#= paginate @movies %>
   </div>
 </div>
+
+
 
 
 

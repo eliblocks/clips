@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_facebook
 
   def edit
     @account = current_user.account
