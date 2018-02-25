@@ -1,26 +1,39 @@
-<div class="row" itemscope itemtype="http://schema.org/Movie">
-  <div class="col-lg-4 offset-lg-1 mt-3">
-    <%= link_to movie_path(@movie), class: "br-card-img-link" do %>
-      <%= image_tag @movie.image, class: "img-fluid movie-preview", itemprop: "image" %>
-    <% end %>
-  </div>
-  <div class="col-lg-5 mt-3">
-    <h1 itemprop="name"><%= @movie.title %></h1>
-    <p itemprop="description"><%= @movie.description %></p><br>
-    <%= link_to "Watch Now!", movie_path(@movie), class: "btn btn-lg btn-success" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-1 mt-3">
+      <%= link_to movie_path(@movie), class: "br-card-img-link" do %>
+        <%= image_tag @movie.image, class: "img-fluid movie-preview" %>
+      <% end %>
+    </div>
+    <div class="col-lg-5 mt-3">
+      <h1><%= @movie.title %></h1>
+      <p><%= @movie.description %></p><br>
+      <%= link_to "Watch Now!", movie_path(@movie), class: "btn btn-lg btn-success" %>
+    </div>
   </div>
 </div>
 
+<script>
+  $(".btn-success").click(function(e) {
+    authModal(e);
+  });
 
-<% unless user_signed_in? %>
-  <script>
-    $(".btn-success").click(function(e) {
-      authModal(e);
-    });
+  $(".br-card-img-link").click(function(e) {
+    authModal(e);
+  });
+</script>
 
-    $(".br-card-img-link").click(function(e) {
-      authModal(e);
-    });
-  </script>
-<% end %>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Movie",
+    "name": <%= @movie.title %>,
+    "image": <%= @movie.image %>,
+    "description": <%= @movie.description %>,
+    "dateCreated": <%= @movie.published_at %>,
+    "director": <%= @movie.director %>,
+    "sameAs": "www.imdb.com/title/tt<%= @movie.imdb_id %>"
+  }
+</script>
 

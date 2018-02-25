@@ -51,6 +51,7 @@ class Video < ApplicationRecord
       rating: parsed_response['Rated'],
       image: parsed_response['Poster'],
       runtime: parsed_response['Runtime'],
+      director: parsed_response['Director'],
       description: parsed_response['Plot'],
       language:  parsed_response['Language']
     }
@@ -63,10 +64,8 @@ class Video < ApplicationRecord
     puts "updating #{attrs[0][:title]}"
     video_attrs = attrs[0]
     image_from_tmdb = tmdb_image
-    puts "image: #{image_from_tmdb}"
     video_attrs.merge!({image: image_from_tmdb}) if image_from_tmdb
     genres = attrs[1]
-    puts "attrs #{video_attrs}"
     update!(video_attrs)
     self.tag_list = genres if genres
   end
