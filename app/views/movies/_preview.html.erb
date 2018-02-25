@@ -1,13 +1,12 @@
-<% provide(:title, @movie.title) %>
-<div class="row">
+<div class="row" itemscope itemtype="http://schema.org/Movie">
   <div class="col-lg-4 offset-lg-1 mt-3">
     <%= link_to movie_path(@movie), class: "br-card-img-link" do %>
-      <%= image_tag @movie.image, class: "img-fluid movie-preview" %>
+      <%= image_tag @movie.image, class: "img-fluid movie-preview", itemprop: "image" %>
     <% end %>
   </div>
   <div class="col-lg-5 mt-3">
-    <h1><%= @movie.title %></h1>
-    <p><%= @movie.description %></p><br>
+    <h1 itemprop="name"><%= @movie.title %></h1>
+    <p itemprop="description"><%= @movie.description %></p><br>
     <%= link_to "Watch Now!", movie_path(@movie), class: "btn btn-lg btn-success" %>
   </div>
 </div>
@@ -24,3 +23,4 @@
     });
   </script>
 <% end %>
+

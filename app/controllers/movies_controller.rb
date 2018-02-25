@@ -1,7 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy, :preview]
-  before_action :redirect_to_root, only: [:new, :edit, :update, :destroy]
-  before_action :redirect_to_preview, only: [:show]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   # GET /videos
   # GET /videos.json
@@ -14,15 +12,17 @@ class MoviesController < ApplicationController
   # GET /videos/1
   # GET /videos/1.json
   def show
-    set_cloudfront_cookies
-    if @movie.removed || @movie.suspended
-      render 'embeds/unavailable'
-    end
-    if current_account.balance < 10
-      flash[:notice] = "You're out of minutes! Buy more to keep watching"
-      session[:video_id] = @video.id
-      session[:ref] = 'site'
-      redirect_to new_charge_path()
+    if user_signed_in?
+      set_cloudfront_cookies
+      if @movie.removed || @movie.suspended
+        render 'embeds/unavailable'
+      end
+      if current_account.balance < 10
+        flash[:notice] = "You're out of minutes! Buy more to keep watching"
+        session[:video_id] = @video.id
+        session[:ref] = 'site'
+        redirect_to new_charge_path()
+      end
     end
   end
 
@@ -30,9 +30,6 @@ class MoviesController < ApplicationController
     @movies = Video.movies
     .search(params[:q], page: params[:page])
     render 'index'
-  end
-
-  def preview
   end
 
   private
@@ -87,18 +84,6 @@ class MoviesController < ApplicationController
       Base64.encode64(cookie_policy.to_json)
     end
 
-    def redirect_to_root
-      unless user_signed_in?
-        redirect_to root_path
-      end
-    end
-
-    def redirect_to_preview
-      unless user_signed_in?
-        redirect_to preview_movie_path
-      end
-    end
-    # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Video.find(params[:id])
     end

@@ -1,12 +1,16 @@
 <% provide(:title, @movie.title) %>
-<div class="movie-section">
-  <%= render 'shared/player', video: @movie %>
-</div>
-<div class="container">
-  <div class="row movie-info-container">
-    <div class="col-md-8">
-      <h4 class="mt-4"><%= @movie.title %></h4>
-      <p class="movie-description mt-4"><%= @movie.description %></p>
+<% if user_signed_in? %>
+  <div class="movie-section">
+    <%= render 'shared/player', video: @movie %>
+  </div>
+  <div class="container">
+    <div class="row movie-info-container">
+      <div class="col-md-8">
+        <h4 class="mt-4"><%= @movie.title %></h4>
+        <p class="movie-description mt-4"><%= @movie.description %></p>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <%= render 'preview' %>
+<% end %>
