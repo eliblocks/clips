@@ -28,11 +28,11 @@
   {
     "@context": "http://schema.org/",
     "@type": "Movie",
-    "name": <%= @movie.title %>,
-    "image": <%= @movie.image %>,
-    "description": <%= @movie.description %>,
-    "dateCreated": <%= @movie.published_at %>,
-    "director": <%= @movie.director %>,
+    "name": "<%= @movie.title %>",
+    "image": "<%= @movie.image %>",
+    "description": "<%= @movie.description %>",
+    "dateCreated": "<%= @movie.published_at %>",
+    "director": "<%= @movie.director %>",
     "sameAs": "www.imdb.com/title/tt<%= @movie.imdb_id %>"
   }
 </script>
