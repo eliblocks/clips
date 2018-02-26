@@ -4,7 +4,10 @@ class MoviesController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @movies = Video.movies.featured.order(:rank)
+    @movies = Video.movies
+    .featured
+    .includes(:tags)
+    .order(:rank)
     .page(params[:page])
     .per(36)
   end
@@ -28,6 +31,7 @@ class MoviesController < ApplicationController
 
   def search
     @movies = Video.movies
+    .includes(:tags)
     .search(params[:q], page: params[:page])
     render 'index'
   end
