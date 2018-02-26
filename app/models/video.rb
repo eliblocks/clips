@@ -23,6 +23,10 @@ class Video < ApplicationRecord
     customRanking ['desc(views)']
   end
 
+  def storage_id
+    s3_id || clip.id
+  end
+
   def self.tagged_with(name)
     Tag.find_by_name!(name).videos
   end
@@ -96,7 +100,7 @@ class Video < ApplicationRecord
   end
 
   def cloudfront_url
-    "https://media.browzable.com/#{s3_id}"
+    "https://media.browzable.com/#{storage_id}"
   end
 
   def policy

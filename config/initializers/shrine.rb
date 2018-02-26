@@ -1,17 +1,17 @@
 require "shrine/storage/s3"
 
 cache_s3_options = {
-  access_key_id:     ENV["EMBEDS_AWS_ACCESS_KEY_ID"],
-  secret_access_key: ENV["EMBEDS_AWS_SECRET_ACCESS_KEY"],
+  access_key_id:     ENV["AWS_ACCESS_KEY_ID"],
+  secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
   region:            "us-west-1",
   bucket:            "clips-cache",
 }
 
 store_s3_options = {
-  access_key_id:     ENV["EMBEDS_AWS_ACCESS_KEY_ID"],
-  secret_access_key: ENV["EMBEDS_AWS_SECRET_ACCESS_KEY"],
+  access_key_id:     ENV["AWS_ACCESS_KEY_ID"],
+  secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
   region:            "us-west-1",
-  bucket:            "clips-store",
+  bucket:            "browzable-movies-output",
 }
 
 Shrine.storages = {

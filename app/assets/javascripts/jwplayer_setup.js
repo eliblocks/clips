@@ -2,9 +2,8 @@ $(document).on("turbolinks:load", function() {
 
   // Embed JWplayer
   var controller = $("body").data("controller");
-  var action = $("body").data("action");
 
-  if ((controller !== "videos" && controller !== "embeds" && controller !== "movies") || action !== "show") {
+  if ($('#browzable-video').length === 0) { 
     return;
   }
 

@@ -2,15 +2,6 @@ Rails.application.routes.draw do
   mount ClipUploader.upload_endpoint(:cache) => "/clips/upload"
   mount Shrine.presign_endpoint(:cache) => "/clips/presign"
 
-  # root to: 'static#welcome', constraints:
-  #   lambda { |request| request.env['warden'].user == nil }
-
-  # root to: 'accounts#usage', constraints:
-  #   lambda { |request| request.env['warden'].user.viewer? }
-
-  # root to: 'accounts#dashboard', constraints:
-  #   lambda { |request| request.env['warden'].user.uploader? }
-
   root to: 'movies#index'
 
   devise_for :users, controllers: { sessions: 'users/sessions',

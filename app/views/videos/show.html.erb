@@ -1,48 +1,52 @@
 <% provide(:title, @video.title) %>
-<div class="row mt-3">
-  <div class="col-lg-10 m-auto">
-    <%= render 'shared/player', video: @video %>
-    <div class="video-info-container">
-        <h4><%= @video.title %></h4>
-        <div class="video-details">
-          <span><%= @video.minutes %> Views</span>
-          <span>&nbsp; | &nbsp;</span>
-          <span><%= time_ago_in_words(@video.created_at) %> ago</span>
-          <button type="button" 
-                class="btn btn-secondary share-btn" 
-                data-toggle="modal" 
-                data-target="#iframe-modal">
-            Share
-          </button>
+<% if user_signed_in? %>
+  <div class="row mt-3">
+    <div class="col-lg-10 m-auto">
+      <%= render 'shared/player', video: @video %>
+      <div class="video-info-container">
+          <h4><%= @video.title %></h4>
+          <div class="video-details">
+            <span><%= @video.minutes %> Views</span>
+            <span>&nbsp; | &nbsp;</span>
+            <span><%= time_ago_in_words(@video.created_at) %> ago</span>
+            <button type="button" 
+                  class="btn btn-secondary share-btn" 
+                  data-toggle="modal" 
+                  data-target="#iframe-modal">
+              Share
+            </button>
+          </div>
+          <hr>
+        <div class="user-info">
+         <%= cl_image_tag @video.user.account.image, client_hints: true, transformation: [ 
+                            { gravity: "auto", width: "50", height: "50", radius: "max", crop: "fill" }] %>
+          <%= link_to @video.user.full_name, user_path(@video.user), class: "uploader-link" %>
         </div>
-        <hr>
-      <div class="user-info">
-       <%= cl_image_tag @video.user.account.image, client_hints: true, transformation: [ 
-                          { gravity: "auto", width: "50", height: "50", radius: "max", crop: "fill" }] %>
-        <%= link_to @video.user.full_name, user_path(@video.user), class: "uploader-link" %>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <%= render 'preview' %>
+<% end %>
 
 <div class="modal fade" id="iframe-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Embed Code</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        &lt;iframe width="560" height="315" src="https://www.browzable.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Embed Code</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          &lt;iframe width="560" height="315" src="https://www.browzable.com/embeds/<%= @video.id %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
