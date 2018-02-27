@@ -9,7 +9,7 @@ cache_s3_options = {
 
 store_s3_options = {
   access_key_id:     ENV["STORAGE_AWS_ACCESS_KEY_ID"],
-  secret_access_key: ENV["STORAGE_SECRET_ACCESS_KEY"],
+  secret_access_key: ENV["STORAGE_AWS_SECRET_ACCESS_KEY"],
   region:            "us-west-1",
   bucket:            "browzable-movies-output",
 }
