@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get 'library', to: 'users#library'
   get 'account', to: 'accounts#show'
   get 'search', to: 'movies#search'
+
   get 'landing', to: 'embeds#landing'
   get 'video_test/:id', to: 'video_test#show'
   get 'buy_message', to: 'embeds#buy_message'
@@ -69,9 +70,10 @@ Rails.application.routes.draw do
 
 
   devise_scope :user do
-      namespace :users do
-        get 'sessions/present', to: "sessions#present"
-        get 'test_login/:id', to: 'sessions#test_login', as: "test_login"
-      end
+    get 'demo', to: 'users/sessions#demo'
+    namespace :users do
+      get 'sessions/present', to: "sessions#present"
+      get 'test_login/:id', to: 'sessions#test_login', as: "test_login"
+    end
   end
 end

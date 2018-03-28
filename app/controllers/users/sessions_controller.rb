@@ -30,6 +30,11 @@ class Users::SessionsController < Devise::SessionsController
     sign_in_and_redirect @user
   end
 
+  def demo
+    @user = User.where(full_name: "John Smith").first
+    sign_in_and_redirect @user
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
