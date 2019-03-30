@@ -1,21 +1,25 @@
-# # Define an application-wide content security policy
-# # For further information see the following documentation
-# # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+# Be sure to restart your server when you modify this file.
 
-# Rails.application.config.content_security_policy do |p|
-#   p.default_src :self, :https, :unsafe_inline
-#   p.font_src    :self, :https, :data
-#   p.img_src     :self, :http, :https, :data
-#   p.media_src   :self, :blob, :http, :https, :data
-#   p.object_src  :none
-#   p.script_src  :self, '*.jwpcdn.com', '*.gstatic.com', :https, :unsafe_inline
-#   p.style_src   :self, :https, :unsafe_inline
+# Define an application-wide content security policy
+# For further information see the following documentation
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+
+# Rails.application.config.content_security_policy do |policy|
+#   policy.default_src :self, :https
+#   policy.font_src    :self, :https, :data
+#   policy.img_src     :self, :https, :data
+#   policy.object_src  :none
+#   policy.script_src  :self, :https
+#   policy.style_src   :self, :https
 
 #   # Specify URI for violation reports
-#   # p.report_uri "/csp-violation-report-endpoint"
+#   # policy.report_uri "/csp-violation-report-endpoint"
 # end
 
-# # Report CSP violations to a specified URI
-# # For further information see the following documentation:
-# # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
-# # Rails.application.config.content_security_policy_report_only = true
+# If you are using UJS then enable automatic nonce generation
+# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
+
+# Report CSP violations to a specified URI
+# For further information see the following documentation:
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
+# Rails.application.config.content_security_policy_report_only = true

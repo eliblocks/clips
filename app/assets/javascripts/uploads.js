@@ -20,7 +20,6 @@ $(document).on("turbolinks:load", function() {
         _: Date.now() // prevent caching
       };
 
-      ahoy.track("uploadAdd", { file: data.files[0].name });
       getFileHex(data, options, logResult);
     },
 
@@ -128,7 +127,6 @@ $(document).on("turbolinks:load", function() {
     data.progressBar.parent().addClass("list-group-item-danger");
     $(".file_type_alert").html("Only mp4 is allowed");
     $(".file_type_alert").addClass("alert alert-danger");
-    ahoy.track("uploadFail", { file: data.files[0].name });
   }
 
 });
