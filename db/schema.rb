@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_190559) do
+ActiveRecord::Schema.define(version: 2019_04_07_013013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 2019_03_30_190559) do
     t.text "clip_data"
     t.integer "balance", default: 0
     t.integer "views", default: 0
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public", default: false
@@ -164,38 +163,9 @@ ActiveRecord::Schema.define(version: 2019_03_30_190559) do
     t.string "s3_id"
     t.integer "rank"
     t.string "director"
-    t.index ["user_id"], name: "index_videos_on_user_id"
-  end
-
-  create_table "visits", force: :cascade do |t|
-    t.string "visit_token"
-    t.string "visitor_token"
-    t.string "ip"
-    t.text "user_agent"
-    t.text "referrer"
-    t.text "landing_page"
-    t.integer "user_id"
-    t.string "referring_domain"
-    t.string "search_keyword"
-    t.string "browser"
-    t.string "os"
-    t.string "device_type"
-    t.integer "screen_height"
-    t.integer "screen_width"
-    t.string "country"
-    t.string "region"
-    t.string "city"
-    t.string "postal_code"
-    t.decimal "latitude"
-    t.decimal "longitude"
-    t.string "utm_source"
-    t.string "utm_medium"
-    t.string "utm_term"
-    t.string "utm_content"
-    t.string "utm_campaign"
-    t.datetime "started_at"
-    t.index ["user_id"], name: "index_visits_on_user_id"
-    t.index ["visit_token"], name: "index_visits_on_visit_token", unique: true
+    t.bigint "account_id"
+    t.string "storage_url"
+    t.index ["account_id"], name: "index_videos_on_account_id"
   end
 
   add_foreign_key "accounts", "users"
@@ -207,5 +177,4 @@ ActiveRecord::Schema.define(version: 2019_03_30_190559) do
   add_foreign_key "plays", "videos"
   add_foreign_key "taggings", "tags"
   add_foreign_key "taggings", "videos"
-  add_foreign_key "videos", "users"
 end

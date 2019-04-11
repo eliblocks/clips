@@ -16,7 +16,7 @@
           <% @videos.order(created_at: :desc).each do |video| %>
             <tr onclick="window.location = '<%= edit_video_path(video) %>' ">
               <td><%= video.title %></td>
-              <td><%= youtube_time(video.duration) %></td>
+              <td><%= youtube_time(video.duration) if video.duration %></td>
               <td><%= video.minutes %></td>
               <td><%= video.created_at.to_formatted_s(:db) %></td>
             </tr>

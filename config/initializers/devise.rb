@@ -251,8 +251,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :facebook,
-                  ENV['CLIPS_FACEBOOK_ID'],
-                  ENV['CLIPS_FACEBOOK_SECRET'],
+                  Rails.application.credentials.facebook_id,
+                  Rails.application.credentials.facebook_secret,
                   info_fields: 'id,cover,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified,email'
 
   # ==> Warden configuration

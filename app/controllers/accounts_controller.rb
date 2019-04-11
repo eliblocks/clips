@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_user.account
-    print account_params
+    @account.clips.attach(params[:account][:clips]) if params[:account][:clips]
     if @account.update(account_params)
       flash[:success] = "Profile Successfully Updated"
       redirect_to user_path(@account.user)
@@ -22,8 +22,11 @@ class AccountsController < ApplicationController
     end
   end
 
+  def upload
+  end
+
   def submitted_params
-    params.permit(:paypal_email)
+    params.require(:account).permit(:paypal_email, clips: [])
   end
 
   def account_params
@@ -42,7 +45,7 @@ class AccountsController < ApplicationController
   end
 
   def dashboard
-    redirect_to new_video_path unless current_user.videos.any?
+    redirect_to new_video_path unless current_account.videos.any?
     @top_earning = current_account.most_earned_videos(5, 30)
   end
 

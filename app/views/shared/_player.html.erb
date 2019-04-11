@@ -9,6 +9,21 @@
     </div>
   <% end %>
 </div>
-<%= content_tag :div, "", class: "browzable-wrapper", data: { url: video.cloudfront_url, video_id: video.id } do %>
-  <div id="browzable-video"></div>
+<%= content_tag :div,
+                "",
+                class: "browzable-wrapper",
+                data: {
+                  url: video.s3_download_url,
+                  video_id: video.id,
+                  controller: "player" } do %>
+  <div id="browzable-video" data-target="player.browzableVideo">
+  </div>
 <% end %>
+
+<style>
+ #browzable-video {
+   min-height: 100px;
+   min-width: 100px;
+   border: 1px solid red;
+ }
+</style>

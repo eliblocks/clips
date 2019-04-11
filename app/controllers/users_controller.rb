@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:library]
   def library
-    @videos = current_user.videos.unremoved
+    @videos = current_account.videos.unremoved
   end
 
   def index

@@ -31,9 +31,9 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= nav_link "Upload", new_video_path %>
+          <%= nav_link "Upload", '/upload' %>
         </li>  
-        <% if current_user.videos.any? %>
+        <% if current_account.videos.any? %>
           <li class="nav-item">
             <%= nav_link "Library", library_path %>
           </li>
@@ -47,8 +47,8 @@
             Account
           </a>
           <div class="dropdown-menu dropdown-menu-right nav-item" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" if current_user.videos.any? %>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" if current_account.videos.any? %>
+            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_account.videos.any? %>
             <%= link_to "Usage", usage_path, class: "dropdown-item" %>
             <%= link_to "Account", account_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -83,7 +83,7 @@
 <% end %>
 
 <script>
-  $(".auth-link").click(function(e) {
-    authModal(e);
-  });
+  // $(".auth-link").click(function(e) {
+  //   authModal(e);
+  // });
 </script>

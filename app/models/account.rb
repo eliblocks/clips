@@ -3,6 +3,9 @@ class Account < ApplicationRecord
   has_many :plays, dependent: :destroy
   has_many :charges
   has_many :payments
+  has_many :videos
+
+  has_many_attached :clips
 
   def image_id
     image.split('/')[1]
@@ -45,7 +48,7 @@ class Account < ApplicationRecord
   end
 
   def uploader?
-    user.videos.any?
+    videos.any?
   end
 
   def last_purchase_date
@@ -66,7 +69,7 @@ class Account < ApplicationRecord
 
   def plays_earned_last(n)
     Play.where('created_at > ?', n.days.ago)
-      .where(video_id: user.videos.ids)
+      .where(video_id: videos.ids)
   end
 
   def minutes_earned_last(n)
@@ -86,7 +89,7 @@ class Account < ApplicationRecord
   end
 
   def seconds_earned
-    views = user.videos.pluck(:views).reduce(:+) || 0
+    views = videos.pluck(:views).reduce(:+) || 0
     views * (1 - Rails.configuration.commission)
   end
 
@@ -97,7 +100,7 @@ class Account < ApplicationRecord
   def video_earnings_last(n)
     Play.select(:video_id, :duration)
       .where('created_at > ?', n.days.ago)
-      .where(video_id: user.videos.ids)
+      .where(video_id: videos.ids)
       .group(:video_id)
       .sum(:duration)
   end

@@ -33,7 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'pry', '~> 0.12.2'
 
+gem "uppy-s3_multipart", "~> 0.2"
+gem 'streamio-ffmpeg'
 gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'kaminari'
@@ -55,6 +58,7 @@ gem 'rack-cors'
 gem 'bootsnap'
 gem 'omdbapi'
 gem 'themoviedb'
+gem 'ffprober'
 # gem 'ransack'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

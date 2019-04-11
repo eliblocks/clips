@@ -3,11 +3,12 @@ class User < ApplicationRecord
   after_create :create_account
 
   #other modules: :lockable, :timeoutable
-  has_many :videos, dependent: :destroy
   has_one :account, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   devise :omniauthable, :omniauth_providers => [:facebook] #todo: remove?
+
+  delegate :video, to: :account
 
   def create_account
     account = Account.new(user_id: id, image: Rails.configuration.default_profile_image)

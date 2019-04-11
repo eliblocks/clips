@@ -10,7 +10,7 @@
 <% end %>
 <span class="account-header">Balance: <%= current_account.balance / 60 %></span>
 <ul>
-  <% if current_user.videos.any? %>
+  <% if current_account.videos.any? %>
     <li>Earned <%= current_account.minutes_earned_last(30) %> minutes in the last 30 days</li>
   <% end %>
   <li>Streamed <%= current_account.minutes_used_last_30 %> minutes in the last 30 days</li>

@@ -1,0 +1,24 @@
+
+<% provide(:title, "Upload") %>
+<br>
+<div class="row">
+  <div class="col-md-6 m-auto text-center">
+    <p class="lead">
+        Browzable helps video creators earn money. 
+        Your viewers will pay &cent;1 for every minute they spend watching your content, 
+        and you get 70%.
+    </p><br>
+    <div class="btn btn-primary btn-lg" id="select-files">
+      Choose videos to upload
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 m-auto">
+    <ul id="videos" class="list-group">
+    </ul>
+    <br>
+    <%= link_to 'Continue', library_path, class: "btn btn-primary", id: "continue" %>
+  </div>
+</div>

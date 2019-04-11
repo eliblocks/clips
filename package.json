@@ -2,7 +2,14 @@
   "name": "embeds",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.0.2"
+    "@rails/activestorage": "^6.0.0-alpha",
+    "@rails/ujs": "^6.0.0-alpha",
+    "@rails/webpacker": "^4.0.2",
+    "activestorage": "^5.2.3",
+    "axios": "^0.18.0",
+    "stimulus": "^1.1.1",
+    "turbolinks": "^5.2.0",
+    "uppy": "^0.30.4"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.2.1"

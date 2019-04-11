@@ -112,6 +112,7 @@ GEM
     cloudinary (1.11.1)
       aws_cf_signer
       rest-client
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -138,6 +139,7 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
+    ffprober (0.5.3)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     globalid (0.4.2)
@@ -229,6 +231,9 @@ GEM
       xml-simple
     pg (1.1.4)
     popper_js (1.14.5)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.3)
     puma (3.12.1)
     rack (2.0.6)
@@ -277,6 +282,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    roda (3.18.0)
+      rack
     ruby_dep (1.5.0)
     ruby_http_client (3.3.0)
     rubyzip (1.2.2)
@@ -331,6 +338,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     sucker_punch (2.1.1)
       concurrent-ruby (~> 1.0)
     themoviedb (1.0.1)
@@ -348,6 +357,10 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    uppy-s3_multipart (0.3.1)
+      aws-sdk-s3 (~> 1.0)
+      content_disposition (~> 1.0)
+      roda (>= 2.27, < 4)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -383,6 +396,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.2)
   devise
+  ffprober
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-fileupload-rails
@@ -394,6 +408,7 @@ DEPENDENCIES
   omniauth-facebook
   paypal-sdk-rest
   pg
+  pry (~> 0.12.2)
   puma (~> 3.7)
   rack-cors
   rails (~> 6.0.0.beta3)
@@ -404,11 +419,13 @@ DEPENDENCIES
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)
+  streamio-ffmpeg
   sucker_punch
   themoviedb
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  uppy-s3_multipart (~> 0.2)
   web-console (>= 3.3.0)
   webpacker (~> 4.x)
 

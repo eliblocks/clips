@@ -5,6 +5,7 @@ module ApplicationHelper
   end
 
   def youtube_time(seconds)
+    return 0 unless seconds
 
     hours = 0
     minutes = 0

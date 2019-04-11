@@ -1,11 +1,13 @@
 class Video < ApplicationRecord
-  include ClipUploader[:clip]
-  include AlgoliaSearch
+  # include ClipUploader[:clip]
+  # include AlgoliaSearch
 
-  belongs_to :user
+  belongs_to :account
   has_many :plays
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, dependent: :destroy
+
+  delegate :user, to: :account
 
   validates :imdb_id, uniqueness: true, allow_nil: true
 
@@ -16,11 +18,16 @@ class Video < ApplicationRecord
   scope :movies, -> { where.not(imdb_id: nil) }
   scope :viewable, -> { unremoved.where(suspended: false) }
 
-  algoliasearch per_environment: true do
-    attribute :title, :views
-    searchableAttributes ['title']
-    hitsPerPage 4
-    customRanking ['desc(views)']
+  # algoliasearch per_environment: true do
+  #   attribute :title, :views
+  #   searchableAttributes ['title']
+  #   hitsPerPage 4
+  #   customRanking ['desc(views)']
+  # end
+
+
+  def s3_key
+    storage_url[/\w{20,}.*/]
   end
 
   def storage_id
@@ -165,10 +172,10 @@ class Video < ApplicationRecord
     "#{Video.cl_base_url}/#{image_id}"
   end
 
-  def duration
-    return 0 unless clip && clip.metadata['duration']
-    clip.metadata['duration'].round
-  end
+  # def duration
+  #   return 0 unless clip && clip.metadata['duration']
+  #   clip.metadata['duration'].round
+  # end
 
   def minutes
     views/60
@@ -186,4 +193,12 @@ class Video < ApplicationRecord
     plays.sum(:duration) || 0
   end
 
+  def s3_download_url
+    presigner = Aws::S3::Presigner.new(client: Aws::S3::Client.new)
+    presigner.presigned_url(
+      "get_object",
+      key: s3_key,
+      bucket: "browzable"
+    )
+  end
 end

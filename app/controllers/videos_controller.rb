@@ -1,9 +1,10 @@
 class VideosController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_video, only: [:show, :edit, :update, :destroy, :remove, :restore]
   before_action :redirect_to_root, only: [:new, :edit, :update, :destroy]
 
   def index
-    @videos = Video.includes(:user)
+    @videos = Video.includes(:account)
     .featured
     .order(views: :desc, created_at: :desc)
     .page(params[:page])
@@ -33,21 +34,24 @@ class VideosController < ApplicationController
   end
 
   def edit
-    unless current_user == @video.user || current_user.admin?
+    unless current_account == @video.account || current_user.admin?
       redirect_to root_url
     end
   end
 
   def create
-    @video = Video.new(video_params)
-    @video.user = current_user
-    @video.image = Rails.configuration.default_image
+    signed_url = params["video"]["storage_url"]
+    @video = current_account.videos.new(
+      title: params["video"]["title"],
+      storage_url: signed_url.gsub(/\?.*/, ""),
+      image: Rails.configuration.default_image
+    )
     if @video.save
-      puts "Success!"
+      ProbeVideoJob.perform_later(@video, signed_url)
+      render json: @video.slice(:title), status: :created
     else
-      puts "Fail: #{@video.error.full_messages}"
+      render json: @video.errors.full_messages, status: :unprocessable_entity
     end
-    head :ok
   end
 
   def update
