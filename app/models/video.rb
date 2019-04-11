@@ -100,8 +100,8 @@ class Video < ApplicationRecord
 
   def signed_cloudfront_url
     signer = Aws::CloudFront::UrlSigner.new(
-      key_pair_id: ENV["CLOUDFRONT_KEY_ID"],
-      private_key: ENV["CLOUDFRONT_PRIVATE_KEY"]
+      key_pair_id: Rails.application.credentials.cloudfront_key_id,
+      private_key: Rails.application.credentials.cloudfront_private_key
     )
     url = signer.signed_url(cloudfront_url, policy: policy.to_json)
   end

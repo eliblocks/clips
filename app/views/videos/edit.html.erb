@@ -36,16 +36,6 @@
         <%= form.label :description %>
         <%= form.text_area :description, class: "form-control" %>
       </div>
-      <div class="form-check form-check-inline">
-        <%= form.label :public, "show", class: "form-check-label" do %>
-          <%= form.radio_button :public, true, checked: true, class: "form-check-input" %> Public
-        <% end %>
-      </div>
-      <div class="form-check, form-check-inline">
-        <%= form.label :public, "hide", class: "form-check-label" do %>  
-          <%= form.radio_button :public, false, checked: false, class: "form-check-input" %> Private
-        <% end %>
-      </div>
       <div class="form-group">
         <%= form.submit "Save", class: "btn btn-primary mt-3" %>
       </div>

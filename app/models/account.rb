@@ -108,7 +108,7 @@ class Account < ApplicationRecord
   def uploader_plays_last(n)
     plays.joins(:video)
       .where('plays.created_at > ?', n.days.ago)
-      .group('videos.user_id')
+      .group('videos.account_id')
       .sum(:duration)
   end
 

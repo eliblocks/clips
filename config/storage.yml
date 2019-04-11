@@ -1,21 +1,20 @@
-# Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon_dev:
   service: S3
-  access_key_id: <%= ENV['STORAGE_AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['STORAGE_AWS_SECRET_ACCESS_KEY'] %>
+  access_key_id: <%= Rails.application.credentials.aws_storage_access_key_id %>
+  secret_access_key: <%= Rails.application.credentials.aws_storage_secret_access_key %>
   region: us-west-1
   bucket: browzable-movie-posters
 
 amazon_prod:
   service: S3
-  access_key_id: <%= ENV['STORAGE_AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['STORAGE_AWS_SECRET_ACCESS_KEY'] %>
+  access_key_id: <%= Rails.application.credentials.aws_storage_access_key_id %>
+  secret_access_key: <%= Rails.application.credentials.aws_storage_secret_access_key %>
   region: us-west-1
   bucket: browzable-movie-posters
 
 amazon:
   service: S3
-  access_key_id: <%= ENV['STORAGE_AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['STORAGE_AWS_SECRET_ACCESS_KEY'] %>
+  access_key_id: <%= Rails.application.credentials.aws_storage_access_key_id %>
+  secret_access_key: <%= Rails.application.credentials.aws_storage_secret_access_key %>
   region: us-west-1
   bucket: browzable
