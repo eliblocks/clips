@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get 'usage', to: 'accounts#usage'
   get 'library', to: 'users#library'
   get 'account', to: 'accounts#show'
-  get 'search', to: 'movies#search'
+  get 'search', to: 'videos#search'
 
   get 'landing', to: 'embeds#landing'
   get 'video_test/:id', to: 'video_test#show'
