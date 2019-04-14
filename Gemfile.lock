@@ -402,6 +402,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   jquery-ui-rails
+  jwt
   kaminari
   listen (>= 3.0.5, < 3.2)
   omdbapi

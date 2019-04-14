@@ -201,4 +201,54 @@ class Video < ApplicationRecord
       bucket: "browzable"
     )
   end
+
+  def mux_playback_url
+    "https://stream.mux.com/#{mux_playback_id}.m3u8?token=#{self.mux_token}"
+  end
+
+  def mux_token
+    sign_url(
+      mux_playback_id, 
+      "v", 
+      Time.now + 360000,
+      Rails.application.credentials.mux_signing_id,
+      Rails.application.credentials.mux_private_key 
+    )
+  end
+
+  def sign_url(playback_id, audience, expires, signing_key_id, private_key, params = {})
+    rsa_private = OpenSSL::PKey::RSA.new(Base64.decode64(private_key))
+    payload = {sub: playback_id, exp: expires.to_i, kid: signing_key_id, aud: audience}
+    payload.merge!(params)
+    JWT.encode(payload, rsa_private, 'RS256')
+  end
+
+  def post_to_mux(signed_url)
+    HTTParty.post(
+      "https://api.mux.com/video/v1/assets", 
+      body: { input: signed_url, playback_policy: "signed"},
+      basic_auth: {
+        username: Rails.application.credentials.mux_id, 
+        password: Rails.application.credentials.mux_secret
+      }
+    )
+  end
+
+  def process_with_mux(signed_url)
+    response = post_to_mux(signed_url)
+    if response.success? && response.parsed_response.data.status == "preparing"
+      puts response
+      update!(
+        mux_asset_id: response.parsed_response.data.id, 
+        mux_playback_id: response.parsed_response.data.playback_ids.first.id
+      )
+    end
+  end
+
+  def get_mux_status
+    HTTParty.get("https://api.mux.com/video/v1/assets/#{mux_asset_id}", basic_auth: {
+      username: Rails.application.credentials.mux_id, 
+      password: Rails.application.credentials.mux_secret
+    })
+  end
 end

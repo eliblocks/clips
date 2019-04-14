@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_013013) do
+ActiveRecord::Schema.define(version: 2019_04_14_160040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,8 @@ ActiveRecord::Schema.define(version: 2019_04_07_013013) do
     t.string "director"
     t.bigint "account_id"
     t.string "storage_url"
+    t.string "mux_asset_id"
+    t.string "mux_playback_id"
     t.index ["account_id"], name: "index_videos_on_account_id"
   end
 

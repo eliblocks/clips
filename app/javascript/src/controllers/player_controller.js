@@ -42,7 +42,7 @@ export default class extends Controller {
       autostart: "true",
       playlist: [{
         file: $(".browzable-wrapper").data("url"),
-        withCredentials: true
+        // withCredentials: true
       }]
     });
 

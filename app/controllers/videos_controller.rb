@@ -48,6 +48,8 @@ class VideosController < ApplicationController
     )
     if @video.save
       ProbeVideoJob.perform_later(@video, signed_url)
+      @video.process_with_mux(signed_url)
+      puts @video.get_mux_status
       render json: @video.slice(:title), status: :created
     else
       render json: @video.errors.full_messages, status: :unprocessable_entity
@@ -55,14 +57,7 @@ class VideosController < ApplicationController
   end
 
   def update
-    params_with_image = video_params
-    if params[:image_id].present?
-      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
-      raise "Invalid upload signature" if !preloaded.valid?
-      params_with_image.merge!(image: preloaded.identifier)
-    end
-
-    if @video.update(params_with_image)
+    if @video.update(video_params)
       flash[:success] = "Video successfully updated"
       redirect_to library_path
     else
@@ -118,7 +113,7 @@ class VideosController < ApplicationController
 
     def video_params
       params.require(:video).permit(:title, :description, :duration, :price,
-                    :approved, :clip, :balance, :views, :user_id, :imdb_id, :public)
+                    :approved, :clip, :balance, :views, :user_id, :imdb_id, :public, :image)
     end
 
     def test_users

@@ -59,6 +59,7 @@ gem 'bootsnap'
 gem 'omdbapi'
 gem 'themoviedb'
 gem 'ffprober'
+gem 'jwt'
 # gem 'ransack'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
