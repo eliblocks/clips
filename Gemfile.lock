@@ -398,7 +398,7 @@ DEPENDENCIES
   devise
   ffprober
   font-awesome-rails
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.7)
   jquery-fileupload-rails
   jquery-rails
   jquery-ui-rails
