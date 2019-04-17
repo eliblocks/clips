@@ -47,9 +47,8 @@ class VideosController < ApplicationController
       image: Rails.configuration.default_image
     )
     if @video.save
-      ProbeVideoJob.perform_later(@video, signed_url)
       @video.process_with_mux(signed_url)
-      puts @video.get_mux_status
+      # UpdateVideoJob.perform_later(@video)
       render json: @video.slice(:title), status: :created
     else
       render json: @video.errors.full_messages, status: :unprocessable_entity

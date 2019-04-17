@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get 'upload', to: 'static#upload'
   get 'dmca', to: 'static#dmca'
 
+  post 'webhooks/mux', to: 'webhooks#mux'
 
   get 'sessions/impersonate', to: 'sessions#impersonate'
 

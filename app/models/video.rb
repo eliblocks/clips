@@ -51,51 +51,6 @@ class Video < ApplicationRecord
     end
   end
 
-  def imdb_attrs
-    response = HTTParty.get("http://www.omdbapi.com/?i=tt#{imdb_id}&apikey=#{ENV['OMDB_KEY']}")
-    parsed_response = response.parsed_response
-    attrs = {
-      title: parsed_response['Title'],
-      published_at: parsed_response['Released'],
-      rating: parsed_response['Rated'],
-      image: parsed_response['Poster'],
-      runtime: parsed_response['Runtime'],
-      director: parsed_response['Director'],
-      description: parsed_response['Plot'],
-      language:  parsed_response['Language']
-    }
-    genres = parsed_response['Genre']
-    [attrs, genres]
-  end
-
-  def update_from_omdb
-    attrs = imdb_attrs
-    puts "updating #{attrs[0][:title]}"
-    video_attrs = attrs[0]
-    image_from_tmdb = tmdb_image
-    video_attrs.merge!({image: image_from_tmdb}) if image_from_tmdb
-    genres = attrs[1]
-    update!(video_attrs)
-    self.tag_list = genres if genres
-  end
-
-  def movie_rating
-    rating == "N/A" ? "Unrated" : rating
-  end
-
-  def tmdb_image
-    base_url = "https://image.tmdb.org/t/p/"
-    size = "w370_and_h556_bestv2"
-    path = tmdb_image_path
-    path.nil? ? nil : base_url + size + path
-  end
-
-  def tmdb_image_path
-    response = HTTParty.get("https://api.themoviedb.org/3/find/tt#{imdb_id}?api_key=#{ENV['TMDB_SECRET']}&language=en-US&external_source=imdb_id")
-    movie_results = response.parsed_response['movie_results']
-    movie_results.empty? ? nil : movie_results[0]['poster_path']
-  end
-
   def signed_cloudfront_url
     signer = Aws::CloudFront::UrlSigner.new(
       key_pair_id: Rails.application.credentials.cloudfront_key_id,
@@ -201,13 +156,13 @@ class Video < ApplicationRecord
   end
 
   def mux_playback_url
-    "https://stream.mux.com/#{mux_playback_id}.m3u8?token=#{self.mux_token}"
+    "https://stream.mux.com/#{mux_playback_id}.m3u8?token=#{self.mux_token("v")}"
   end
 
-  def mux_token
+  def mux_token(aud)
     sign_url(
       mux_playback_id, 
-      "v", 
+      aud, 
       Time.now + 360000,
       Rails.application.credentials.mux_signing_id,
       Rails.application.credentials.mux_private_key 
@@ -243,10 +198,22 @@ class Video < ApplicationRecord
     end
   end
 
-  def get_mux_status
+  def get_mux_asset
     HTTParty.get("https://api.mux.com/video/v1/assets/#{mux_asset_id}", basic_auth: {
       username: Rails.application.credentials.mux_id, 
       password: Rails.application.credentials.mux_secret
     })
+  end
+
+  def mux_thumbnail_url
+    "https://image.mux.com/#{mux_playback_id}/thumbnail.png?token=#{mux_token("t")}"
+  end
+
+  def mux_duration(asset_response)
+    asset_response.parsed_response.data.tracks.find { |track| track.type == "video" }.duration
+  end
+
+  def mux_status(asset_response)
+    asset_response.parsed_response.data.status
   end
 end
