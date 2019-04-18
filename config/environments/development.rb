@@ -65,4 +65,10 @@ Rails.application.configure do
 
   config.hosts << "browzable.ngrok.io"
   config.web_console.whitelisted_ips << "35.172.58.74"
+
+  config.mux_id = Rails.application.credentials.mux_id
+  config.mux_secret = Rails.application.credentials.mux_secret
+
+  config.mux_signing_id = Rails.application.credentials.mux_signing_id
+  config.mux_private_key= Rails.application.credentials.mux_private_key
 end

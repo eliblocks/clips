@@ -164,8 +164,8 @@ class Video < ApplicationRecord
       mux_playback_id, 
       aud, 
       Time.now + 360000,
-      Rails.application.credentials.mux_signing_id,
-      Rails.application.credentials.mux_private_key 
+      Rails.configuration.mux_signing_id,
+      Rails.configuration.mux_private_key
     )
   end
 
@@ -181,8 +181,8 @@ class Video < ApplicationRecord
       "https://api.mux.com/video/v1/assets", 
       body: { input: signed_url, playback_policy: "signed"},
       basic_auth: {
-        username: Rails.application.credentials.mux_id, 
-        password: Rails.application.credentials.mux_secret
+        username: Rails.configuration.mux_id, 
+        password: Rails.configuration.mux_secret
       }
     )
   end
@@ -200,8 +200,8 @@ class Video < ApplicationRecord
 
   def get_mux_asset
     HTTParty.get("https://api.mux.com/video/v1/assets/#{mux_asset_id}", basic_auth: {
-      username: Rails.application.credentials.mux_id, 
-      password: Rails.application.credentials.mux_secret
+      username: Rails.configuration.mux_id, 
+      password: Rails.configuration.mux_secret
     })
   end
 
