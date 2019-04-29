@@ -71,4 +71,8 @@ Rails.application.configure do
 
   config.mux_signing_id = Rails.application.credentials.mux_signing_id
   config.mux_private_key= Rails.application.credentials.mux_private_key
+
+  config.braintree_id = Rails.application.credentials.braintree_id
+  config.braintree_public_key = Rails.application.credentials.braintree_public_key
+  config.braintree_private_key = Rails.application.credentials.braintree_private_key
 end

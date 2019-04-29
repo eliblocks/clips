@@ -103,6 +103,10 @@ Rails.application.configure do
 
   config.mux_signing_id = Rails.application.credentials.production_mux_signing_id
   config.mux_private_key = Rails.application.credentials.production_mux_private_key
+
+  config.braintree_id = Rails.application.credentials.production_braintree_id
+  config.braintree_public_key = Rails.application.credentials.production_braintree_public_key
+  config.braintree_private_key = Rails.application.credentials.production_braintree_private_key
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
