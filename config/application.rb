@@ -23,7 +23,7 @@ module Embeds
     end
 
     config.default_image = "asdghyiulpfy"
-    config.default_profile_image = "v1508457686/default_profile_gmtwcg.png"
+    config.default_profile_image = "brdefprofpic"
     config.rate = 6000
     config.commission = 0.30
     # Settings in config/environments/* take precedence over those specified here.

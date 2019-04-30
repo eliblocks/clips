@@ -13,7 +13,6 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_user.account
-    @account.clips.attach(params[:account][:clips]) if params[:account][:clips]
     if @account.update(account_params)
       flash[:success] = "Profile Successfully Updated"
       redirect_to user_path(@account.user)
@@ -25,18 +24,8 @@ class AccountsController < ApplicationController
   def upload
   end
 
-  def submitted_params
-    params.require(:account).permit(:paypal_email, clips: [])
-  end
-
   def account_params
-    if params[:image_id].present?
-      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
-      raise "Invalid upload signature" if !preloaded.valid?
-      submitted_params.merge(image: preloaded.identifier)
-    else
-      submitted_params
-    end
+    params.require(:account).permit(:paypal_email, :image)
   end
 
   def usage
