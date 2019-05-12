@@ -23,21 +23,6 @@ class Account < ApplicationRecord
     "#{Video.cl_base_url}/#{image_id}"
   end
 
-  def update_balance(seconds)
-    new_balance = balance + seconds
-    update(balance: new_balance)
-  end
-
-  def debit_play(play)
-    seconds = -play.duration
-    update_balance(seconds)
-  end
-
-  def credit_play(play)
-    seconds = play.duration * (1 - Rails.configuration.commission )
-    update_balance(seconds)
-  end
-
   def receivable
     #stub value
     if balance > 1000

@@ -64,14 +64,14 @@ GEM
     algoliasearch-rails (1.22.0)
       algoliasearch (>= 1.17.0, < 2.0.0)
       json (>= 1.5.1)
-    autoprefixer-rails (9.5.1)
+    autoprefixer-rails (9.5.1.1)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.155.0)
+    aws-partitions (1.161.0)
     aws-sdk-cloudfront (1.15.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.48.6)
+    aws-sdk-core (3.51.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -79,7 +79,7 @@ GEM
     aws-sdk-elastictranscoder (1.11.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
-    aws-sdk-kms (1.17.0)
+    aws-sdk-kms (1.18.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.36.1)
@@ -131,12 +131,20 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    down (4.8.0)
+    down (4.8.1)
       addressable (~> 2.5)
     erubi (1.8.0)
     execjs (2.7.0)
+    factory_bot (5.0.2)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.0.2)
+      factory_bot (~> 5.0.2)
+      railties (>= 4.2.0)
+    faker (1.9.3)
+      i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
@@ -204,7 +212,7 @@ GEM
     msgpack (1.2.10)
     multi_json (1.13.1)
     multi_xml (0.6.0)
-    multipart-post (2.0.0)
+    multipart-post (2.1.0)
     mustermann (1.0.3)
     netrc (0.11.0)
     nio4r (2.3.1)
@@ -275,7 +283,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redis (4.1.0)
+    redis (4.1.1)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
@@ -285,6 +293,23 @@ GEM
       netrc (~> 0.8)
     roda (3.19.0)
       rack
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     ruby_dep (1.5.0)
     ruby_http_client (3.3.0)
     rubyzip (1.2.2)
@@ -308,13 +333,13 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.0)
+    selenium-webdriver (3.142.2)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     sendgrid-ruby (5.3.0)
       ruby_http_client (~> 3.3.0)
       sinatra (>= 1.4.7, < 3)
-    shrine (2.16.0)
+    shrine (2.17.0)
       content_disposition (~> 1.0)
       down (~> 4.1)
     sidekiq (5.2.7)
@@ -329,6 +354,8 @@ GEM
       tilt (~> 2.0)
     spring (2.0.2)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -358,17 +385,17 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    uppy-s3_multipart (0.3.1)
+    uppy-s3_multipart (0.3.2)
       aws-sdk-s3 (~> 1.0)
       content_disposition (~> 1.0)
       roda (>= 2.27, < 4)
     warden (1.2.8)
       rack (>= 2.0.6)
-    web-console (3.7.0)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
+    web-console (4.0.0)
+      actionview (>= 6.0.0.a)
+      activemodel (>= 6.0.0.a)
       bindex (>= 0.4.0)
-      railties (>= 5.0)
+      railties (>= 6.0.0.a)
     webpacker (4.0.2)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -379,7 +406,7 @@ GEM
     xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.1.5)
+    zeitwerk (2.1.6)
 
 PLATFORMS
   ruby
@@ -397,6 +424,8 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.2)
   devise
+  factory_bot_rails
+  faker
   ffprober
   font-awesome-rails
   jbuilder (~> 2.7)
@@ -414,12 +443,14 @@ DEPENDENCIES
   puma (~> 3.7)
   rack-cors
   rails (~> 6.0.0.rc1)
+  rspec-rails (~> 3.8)
   sass-rails (~> 5.0)
   selenium-webdriver
   sendgrid-ruby
   shrine
   sidekiq
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   streamio-ffmpeg
   sucker_punch

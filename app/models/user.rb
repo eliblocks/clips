@@ -1,7 +1,5 @@
 class User < ApplicationRecord
 
-  after_create :create_account
-
   #other modules: :lockable, :timeoutable
   has_one :account, dependent: :destroy
   devise :database_authenticatable, :registerable,
@@ -36,6 +34,7 @@ class User < ApplicationRecord
       user.referrer = origin #for adwords tracking
       # user.image = auth.info.image # assuming the user model has an image
       user.skip_confirmation!
+      create_account unless user.account
     end
   end
 end

@@ -44,4 +44,14 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  config.mux_id = Rails.application.credentials.mux_id
+  config.mux_secret = Rails.application.credentials.mux_secret
+
+  config.mux_signing_id = Rails.application.credentials.mux_signing_id
+  config.mux_private_key= Rails.application.credentials.mux_private_key
+
+  config.braintree_id = Rails.application.credentials.braintree_id
+  config.braintree_public_key = Rails.application.credentials.braintree_public_key
+  config.braintree_private_key = Rails.application.credentials.braintree_private_key
 end

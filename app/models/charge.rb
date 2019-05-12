@@ -6,6 +6,6 @@ class Charge < ApplicationRecord
     self.gateway_charge_id = transaction.id
     self.amount = transaction.amount.to_i
     save!
-    account.update_balance(self.seconds)
+    account.update(balance: balance + seconds)
   end
 end

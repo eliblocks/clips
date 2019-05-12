@@ -125,11 +125,6 @@ class Video < ApplicationRecord
     "#{Video.cl_base_url}/#{image_id}"
   end
 
-  # def duration
-  #   return 0 unless clip && clip.metadata['duration']
-  #   clip.metadata['duration'].round
-  # end
-
   def minutes
     views/60
   end
@@ -161,8 +156,8 @@ class Video < ApplicationRecord
 
   def mux_token(aud)
     sign_url(
-      mux_playback_id, 
-      aud, 
+      mux_playback_id,
+      aud,
       Time.now + 360000,
       Rails.configuration.mux_signing_id,
       Rails.configuration.mux_private_key
@@ -178,10 +173,10 @@ class Video < ApplicationRecord
 
   def post_to_mux(signed_url)
     HTTParty.post(
-      "https://api.mux.com/video/v1/assets", 
+      "https://api.mux.com/video/v1/assets",
       body: { input: signed_url, playback_policy: "signed"},
       basic_auth: {
-        username: Rails.configuration.mux_id, 
+        username: Rails.configuration.mux_id,
         password: Rails.configuration.mux_secret
       }
     )
@@ -192,7 +187,7 @@ class Video < ApplicationRecord
     if response.success? && response.parsed_response.data.status == "preparing"
       puts response
       update!(
-        mux_asset_id: response.parsed_response.data.id, 
+        mux_asset_id: response.parsed_response.data.id,
         mux_playback_id: response.parsed_response.data.playback_ids.first.id
       )
     end
@@ -200,7 +195,7 @@ class Video < ApplicationRecord
 
   def get_mux_asset
     HTTParty.get("https://api.mux.com/video/v1/assets/#{mux_asset_id}", basic_auth: {
-      username: Rails.configuration.mux_id, 
+      username: Rails.configuration.mux_id,
       password: Rails.configuration.mux_secret
     })
   end
