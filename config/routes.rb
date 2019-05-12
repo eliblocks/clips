@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'static#contact'
   get 'privacy', to: 'static#privacy'
   get 'terms', to: 'static#terms'
+  get 'close_tab', to: 'static#close_tab'
 
   patch 'accounts', to: 'accounts#update'
   get 'accounts/edit', to: 'accounts#edit'
