@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   before_action :redirect_to_root, only: [:new, :edit, :update, :destroy]
 
   def index
-    @videos = Video.includes(:account)
+    @videos = Video.includes(:user)
     .featured
     .order(views: :desc, created_at: :desc)
     .page(params[:page])
@@ -17,7 +17,7 @@ class VideosController < ApplicationController
         render 'embeds/unavailable'
       end
 
-      if current_user.account.balance < 10
+      if current_user.balance < 10
         flash[:notice] = "You're out of minutes! Buy more to keep watching"
         session[:video_id] = @video.id
         session[:ref] = 'site'
@@ -34,14 +34,14 @@ class VideosController < ApplicationController
   end
 
   def edit
-    unless current_account == @video.account || current_user.admin?
+    unless current_user == @video.user || current_user.admin?
       redirect_to root_url
     end
   end
 
   def create
     signed_url = params["video"]["storage_url"]
-    @video = current_account.videos.new(
+    @video = current_user.videos.new(
       title: params["video"]["title"],
       storage_url: signed_url.gsub(/\?.*/, ""),
       image: Rails.configuration.default_image
@@ -118,7 +118,7 @@ class VideosController < ApplicationController
     def test_users
       test_uids = ["108116283341322", "113454752806178", "118849962265351", "102626340558548", "112712999547131"]
       @test_users = User.where(uid: test_uids)
-      @test_users.select { |user| user.account.plays.last == nil ||
-                                  user.account.plays.last.created_at < 2.minutes.ago }
+      @test_users.select { |user| user.plays.last == nil ||
+                                  user.plays.last.created_at < 2.minutes.ago }
     end
 end

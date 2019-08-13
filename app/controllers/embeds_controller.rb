@@ -7,7 +7,7 @@ class EmbedsController < ApplicationController
     end
 
     if user_signed_in?
-      if current_account.balance < @video.duration
+      if current_user.balance < @video.duration
         redirect_to buy_message_path
         session[:video_id] = @video.id
         session[:ref] = 'embed'
@@ -23,7 +23,7 @@ class EmbedsController < ApplicationController
 
   def buy_message
     @video = Video.find(session[:video_id])
-    unless current_account.balance < @video.duration
+    unless current_user.balance < @video.duration
       redirect_to embed_path(@video.id)
     end
   end

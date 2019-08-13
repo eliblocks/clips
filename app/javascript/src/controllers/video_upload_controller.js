@@ -2,12 +2,14 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
   connect() {
+    console.log("initializing uppy!!!!!!")
     const axios = require('axios');
     const Uppy = require('@uppy/core')
     const Dashboard = require('@uppy/dashboard')
     const AwsS3Multipart = require('@uppy/aws-s3-multipart')
     require('@uppy/core/dist/style.css')
     require('@uppy/dashboard/dist/style.css')
+
 
     const uppy = Uppy()
       .use(Dashboard, {
@@ -27,7 +29,7 @@ export default class extends Controller {
           }
         })
         .then(function (response) {
-          console.log(response);
+          window.location.reload()
         })
         .catch(function (error) {
           console.log(error);

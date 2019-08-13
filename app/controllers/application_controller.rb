@@ -1,11 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_account
-
-  def current_account
-    current_user.account
-  end
 
   def authenticate_facebook
     redirect_to root_url unless user_signed_in?

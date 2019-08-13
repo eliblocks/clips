@@ -1,19 +1,15 @@
 <% provide(:description, 
   "Monetize your videos with pay per minute streaming. Upload and embed on your site and earn &cent;.7 for every minute watched.") %> 
-<nav class="navbar bg-green">
-  <%= image_tag "browzable_logo_white.png", width: 130, height: 32, class: "mb-1" %>
-</nav>
 
 <div class="jumbotron bg-green jumbotron-fluid">
   <div class="row">
     <div class="col-md-9 m-auto text-center"> 
       <h1 class="home-title text-white">Pay-Per-Minute Video Streaming</h1>
       <h2 class="home-subtitle text-white">Upload your videos and get paid &cent;.7 for every minute watched.</h2>
-      <%= link_to "Sign up with Facebook to upload", 
-            user_facebook_omniauth_authorize_path, 
-            class: "facebook-button", 
-            id: "landing-button", 
-            type: "uploader" %>
+      <%= link_to "Sign Up", 
+            new_user_registration_path(type: "creator"), 
+            class: "btn btn-lg btn-primary",
+            id: "landing-button" %>
     </div>
   </div>
 </div>
@@ -22,7 +18,7 @@
     <div class="col-md-7 m-auto">
       <h4>A Better Business Model</h4>
       <p>
-        Ads are annoying, and they make very little money for all the inconvenience they cause. That's why there has to be a better way to sell your content. With Browzable, you can charge your viewers directly based on how much they watch. Browzable users pay $10 for 1,000 minutes, and as they play video, the minutes transfer to the creator, who gets 70% of the earnings. 
+        Ads are annoying, and they make very little money for all the inconvenience they cause. That's why there has to be a better way to sell your content. With Browzable, you can charge your viewers directly based on how much they watch. Browzable users pay $10 for 1,000 minutes. As they play video, the minutes transfer to the creator, who gets 70% of the earnings. 
       </p>
       <h4>Get Started</h4>
       <p>Simply upload your videos to Browzable. You will get a profile page which has all your videos. All you have to do is direct viewers to your Browzable page. Viewers will have to sign up before they can watch, but everyone gets 100 free minutes so they can start right away.

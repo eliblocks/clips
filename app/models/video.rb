@@ -1,12 +1,10 @@
 class Video < ApplicationRecord
   include AlgoliaSearch
 
-  belongs_to :account
+  belongs_to :user
   has_many :plays
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, dependent: :destroy
-
-  delegate :user, to: :account
 
   validates :imdb_id, uniqueness: true, allow_nil: true
 
@@ -104,11 +102,6 @@ class Video < ApplicationRecord
     self.destroy
   end
 
-  def update_views(play)
-    new_views = views + play.duration
-    update(views: new_views)
-  end
-
   def image_id
     image.split('/')[1]
   end
@@ -130,11 +123,8 @@ class Video < ApplicationRecord
   end
 
   def preview
-    if image
-      image_url
-    else
-      "jw_black.png"
-    end
+    return image_url if image
+    "jw_black.png"
   end
 
   def seconds_played

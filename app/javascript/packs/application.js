@@ -24,6 +24,8 @@ console.log('Hello World from Webpacker')
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
+import 'bootstrap'
+
 const application = Application.start()
 const context = require.context("../src/controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))

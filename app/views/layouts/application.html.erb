@@ -14,41 +14,38 @@
     <%= render 'layouts/gtag' %>
     <%= csrf_meta_tags %>
     <%= description_meta_tag(yield(:description)) %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://cdn.jwplayer.com/libraries/NEHubOqB.js"> </script>
     <script src="https://js.braintreegateway.com/web/dropin/1.8.0/js/dropin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     
   </head>
 
   <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
-    <% unless params[:controller] == "embeds" %>
+    <% if params[:controller] == "embeds" %>
+      <%= yield %>
+    <% elsif action_name == "welcome" %>
       <%= render 'layouts/nav' %>
-      <% if params[:controller] == 'movies' && params[:action] == 'show' %>
-        <%= yield %>
-      <% else %>
-        <%= content_tag :main, class: "container" do %>
-          <% flash.each do |message_type, message| %>
-            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-          <% end %>
-          <%= yield %>
+      <%= render 'shared/auth_modal' unless user_signed_in? %>
+      <%= yield %>
+    <% else %>
+      <%= render 'layouts/nav' %>
+      <%= render 'shared/auth_modal' unless user_signed_in? %>
+      <%= content_tag :main, class: "container" do %>
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
         <% end %>
+        <%= yield %>
       <% end %>
       <%= render 'layouts/footer' %>
-      <%= render 'shared/auth_modal' unless user_signed_in? %>
-    <% else %>
-      <%= yield %>
     <% end %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'bootstrap' %>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/6260493.js"></script>
   <% end %>
 </html>
 

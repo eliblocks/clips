@@ -14,14 +14,13 @@ export default class extends Controller {
       dataType: "html"
     });
     
-    request.done(function( msg ) {
-      this.updateBalance(balance);
+    request.done(msg => {
+      this.updateBalance(balance, playDuration);
       console.log("balance: ", balance);
     });
-    
   }
 
-  updateBalance(balance) {
+  updateBalance(balance, playDuration) {
     balance -= playDuration;
     if (balance < 10) {
       window.location.href = "/charges/new";

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_160040) do
+ActiveRecord::Schema.define(version: 2019_08_10_232255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,33 +64,33 @@ ActiveRecord::Schema.define(version: 2019_04_14_160040) do
     t.string "currency"
     t.string "description"
     t.boolean "success"
-    t.bigint "account_id"
+    t.bigint "user_id"
     t.integer "seconds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_charges_on_account_id"
+    t.index ["user_id"], name: "index_charges_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
     t.integer "amount"
     t.integer "seconds"
     t.string "currency"
-    t.bigint "account_id"
+    t.bigint "user_id"
     t.bigint "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_payments_on_account_id"
     t.index ["batch_id"], name: "index_payments_on_batch_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "plays", force: :cascade do |t|
-    t.bigint "account_id"
+    t.bigint "user_id"
     t.bigint "video_id"
     t.integer "duration"
     t.integer "price", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_plays_on_account_id"
+    t.index ["user_id"], name: "index_plays_on_user_id"
     t.index ["video_id"], name: "index_plays_on_video_id"
   end
 
@@ -134,6 +134,8 @@ ActiveRecord::Schema.define(version: 2019_04_14_160040) do
     t.string "category", default: "viewer"
     t.string "referrer"
     t.string "link"
+    t.string "image"
+    t.integer "balance", default: 6000
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -163,20 +165,21 @@ ActiveRecord::Schema.define(version: 2019_04_14_160040) do
     t.string "s3_id"
     t.integer "rank"
     t.string "director"
-    t.bigint "account_id"
+    t.bigint "user_id"
     t.string "storage_url"
     t.string "mux_asset_id"
     t.string "mux_playback_id"
-    t.index ["account_id"], name: "index_videos_on_account_id"
+    t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
   add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "charges", "accounts"
-  add_foreign_key "payments", "accounts"
+  add_foreign_key "charges", "users"
   add_foreign_key "payments", "batches"
-  add_foreign_key "plays", "accounts"
+  add_foreign_key "payments", "users"
+  add_foreign_key "plays", "users"
   add_foreign_key "plays", "videos"
   add_foreign_key "taggings", "tags"
   add_foreign_key "taggings", "videos"
+  add_foreign_key "videos", "users"
 end

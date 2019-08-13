@@ -7,14 +7,13 @@
         <button type="button" class="btn btn-secondary share-link float-right" data-toggle="modal" data-target="#iframe-modal">Share</button>
         <hr>
       <div class="user-info">
-       <%= cl_image_tag @video.user.account.image, client_hints: true, transformation: [ 
+       <%= cl_image_tag @video.user.image, client_hints: true, transformation: [ 
                           { gravity: "auto", width: "50", height: "50", radius: "max", crop: "fill" }] %>
         <%= link_to @video.user.full_name, user_path(@video.user), class: "uploader-link" %>
       </div>
     </div>
   </div>
 </div>
-
 
 <%= render 'shared/auth_modal' %>
 

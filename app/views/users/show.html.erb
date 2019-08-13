@@ -1,10 +1,10 @@
 <% provide(:title, @user.full_name) %>
 <br>
-<div class="row">
+<div class="row" data-controller="profile">
   <div class="col-md-4 offset-md-4">
     <div class="profile-card">
       <div class="profile-pic">
-        <%= cl_image_tag @user.account.image, client_hints: true, transformation: [ 
+        <%= cl_image_tag @user.image, client_hints: true, transformation: [ 
                           { gravity: "auto", width: "150", height: "150", radius: "max", crop: "fill" }], id: "cloudinary-image" %>
       </div>
       <div class="loader"></div>
@@ -13,47 +13,19 @@
       </div>
       <div class="stats">
         <span><%= @user.videos.viewable.count %> Videos</span> | 
-        <span><%= number_to_human(@user.account.balance/60) %> Minutes</span>
+        <span><%= number_to_human(@user.balance/60) %> Minutes</span>
       </div>
     </div>
   </div>
   <div class="col-md-4 text-right">
     <% if @user == current_user %>
-      <%= form_with scope: :account, url: "/accounts", method: :patch, id: "profile-pic-form" do |form| %>
-        <a href="#" id="file-upload">Change profile image</a>
+      <%= form_with scope: :user, url: "/profile", method: :patch, remote: true, id: "profile-pic-form" do |form| %>
+        <a href="javascript:void(0)" id="file-upload">Change profile image</a>
         <%= form.hidden_field :image, id: "image-field" %>
         <%= form.submit "Update", class: "btn btn-primary profile-save" %>
       <% end %>
     <% end %>
   </div>
 </div>
-
-
 <hr>
 <%= render 'videos/list', videos: @user_videos %>
-
-
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-<script>
-const uploader = cloudinary.createUploadWidget({
-  cloudName: 'dvizsamps',
-  apiKey: "845485225187822",
-  uploadPreset: "ur1v3sps",
-  multiple: false,
-}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info);
-      var id = result.info.public_id;
-      var oldUrl = $("#cloudinary-image").attr("src");
-      var newUrl = oldUrl.replace(/\w+$/, id);
-      $("#cloudinary-image").attr("src", newUrl);
-      $("#image-field").attr("value", id);
-      $("#profile-pic-form").submit();
-    }
-  }
-)
-
-document.getElementById("file-upload").addEventListener("click", function(){
-  uploader.open();
-}, false);
-</script>

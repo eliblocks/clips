@@ -1,7 +1,7 @@
 <div class="profile-header-row">
   <div class="profile-card">
     <div class="profile-pic">
-      <%= cl_image_tag current_account.image, client_hints: true, transformation: [ 
+      <%= cl_image_tag current_user.image, client_hints: true, transformation: [ 
                         { gravity: "auto", width: "150", height: "150", radius: "max", crop: "fill" }] %>
       <div class="loader"></div>
     </div>
@@ -10,15 +10,15 @@
       <h4><%= current_user.full_name %></h4>
     </div>
     <div class="stats">
-      <span><%= current_account.videos.count %> Videos</span> |
-      <span><%= current_account.balance %> Minutes</span>
+      <span><%= current_user.videos.count %> Videos</span> |
+      <span><%= current_user.balance %> Minutes</span>
     </div>
   </div>
 </div>
 <hr>
 <div class="row">
   <div class="col-md-4 m-auto text-center">
-    <%= form_with scope: :account, url: "/accounts", method: :patch do |form| %>
+    <%= form_with scope: :user, url: "/users", method: :patch do |form| %>
       <label class="btn-link text-center">Change profile photo
         <%= cl_image_upload_tag(:image_id, aria_hidden: true, id: "file-upload-br") %>
       </label>

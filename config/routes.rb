@@ -4,11 +4,17 @@ Rails.application.routes.draw do
 
   mount UPPY_S3_MULTIPART_APP => "/s3/multipart"
 
-  root to: 'videos#index'
+
 
   devise_for :users, controllers: { sessions: 'users/sessions',
                                   registrations: "users/registrations",
                                   omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  authenticated :user do
+    root 'videos#index', as: :authenticated_root
+  end
+
+  root 'static#welcome'
 
   resources :users
   resources :charges
@@ -24,21 +30,20 @@ Rails.application.routes.draw do
   resources :plays
   resources :embeds
 
+  patch 'profile', to: 'profile#update'
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
   get 'privacy', to: 'static#privacy'
   get 'terms', to: 'static#terms'
   get 'close_tab', to: 'static#close_tab'
 
-  patch 'accounts', to: 'accounts#update'
-  get 'accounts/edit', to: 'accounts#edit'
-  get 'accounts/show' , to: 'accounts#show'
-  get 'upload', to: 'accounts#upload'
-  post 'upload', to: 'accounts#save_uploads'
-  get 'dashboard', to: 'accounts#dashboard'
-  get 'usage', to: 'accounts#usage'
+  get 'users/edit', to: 'users#edit'
+  get 'users/show' , to: 'users#show'
+  get 'upload', to: 'users#upload'
+  post 'upload', to: 'users#save_uploads'
+  get 'dashboard', to: 'users#dashboard'
+  get 'usage', to: 'users#usage'
   get 'library', to: 'users#library'
-  get 'account', to: 'accounts#show'
   get 'search', to: 'videos#search'
 
   get 'landing', to: 'embeds#landing'

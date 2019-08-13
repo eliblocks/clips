@@ -3,8 +3,8 @@
 <div class="row">
   <div class="col">
     <h4 class="text-center">Creator Dashboard</h4>
-    <h6>Balance: <%= current_account.balance / 60  %></h6>
-    <h6>Earned <%= current_account.minutes_earned_last(30) %> minutes in the last 30 days</h6>
+    <h6>Balance: <%= current_user.balance / 60  %></h6>
+    <h6>Earned <%= current_user.minutes_earned_last(30) %> minutes in the last 30 days</h6>
   </div>
 </div>
 <br>
@@ -21,7 +21,7 @@
         <% end %>
       </ul>
     <% else %>
-      <p>No earnings yet. <%= link_to "Upload videos", new_video_path %></p>
+      <p>No earnings yet. <%= link_to "Upload videos", library_path %></p>
     <% end %>
   </div>
 </div>

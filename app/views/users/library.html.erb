@@ -1,7 +1,12 @@
 <% provide(:title, "Library") %>
 
-<div class="row">
-  <div class="col">
+<div class="row mt-2">
+  <div class="col-lg-1">
+    <div class="btn btn-primary" id="select-files" data-controller="video-upload">
+      Upload
+    </div>
+  </div>
+  <div class="col-lg-11">
     <% if @videos %>
       <table class="table library-table">
         <thead>

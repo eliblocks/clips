@@ -1,8 +1,8 @@
-desc "Reset Account minute balances"
+desc "Reset user minute balances"
 task reset_balances: [:environment] do
-  Account.includes(:plays, :charges).find_each do |account|
-    puts "#{account.user.full_name} old balance: #{account.balance}"
-    account.update(balance: account.calculated_balance)
-    puts "#{account.user.full_name} new balance: #{account.balance}"
+  User.includes(:plays, :charges).find_each do |user|
+    puts "#{user.full_name} old balance: #{user.balance}"
+    user.update(balance: user.calculated_balance)
+    puts "#{user.full_name} new balance: #{user.balance}"
   end
 end

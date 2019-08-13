@@ -8,7 +8,7 @@
         <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
       <% end %>
       <span class="dot-separator">&#8226;</span>
-      <%= link_to(current_user.account.balance/60, 
+      <%= link_to(current_user.balance/60, 
                   root_path, class: "br-balance", id: "logo-balance") %>
     </div>
 
@@ -31,26 +31,19 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= nav_link "Upload", '/upload' %>
-        </li>  
-        <% if current_account.videos.any? %>
-          <li class="nav-item">
-            <%= nav_link "Library", library_path %>
-          </li>
-        <% end %>
-
+          <%= nav_link "Upload", library_path %>
+        </li>
         <li class="nav-item">
           <%= nav_link "Buy Minutes", new_charge_path %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="buttton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
+            Accounts
           </a>
           <div class="dropdown-menu dropdown-menu-right nav-item" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" if current_account.videos.any? %>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_account.videos.any? %>
+             <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
             <%= link_to "Usage", usage_path, class: "dropdown-item" %>
-            <%= link_to "Account", account_path, class: "dropdown-item" %>
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li> 
@@ -66,10 +59,10 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link auth-link" data-action="videos#login">Log in</a>
+        <%= link_to "Log in", new_user_session_path, class: "nav-link auth-link" %>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link auth-link" data-action="videos#login">Sign up</a>
+        <%= link_to "Sign up", new_user_registration_path, class: "nav-link auth-link" %>
       </li>
       
     </ul>

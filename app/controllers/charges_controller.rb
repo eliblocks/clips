@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def new
-    if current_account.balance < 10
+    if current_user.balance < 10
       flash.now[:notice] = "You're out of minutes! Buy more to keep watching"
     end
     @charge = Charge.new
@@ -15,7 +15,7 @@ class ChargesController < ApplicationController
     result = attempt_sale(@amount, params[:nonce])
     if result.success?
       puts "success!: #{result.transaction.id}"
-      @charge = current_user.account.charges.new
+      @charge = current_user.charges.new
       @charge.create_from_transaction(result.transaction)
       flash[:success] = "Payment successful!"
       redirect_after_payment

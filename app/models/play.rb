@@ -1,10 +1,10 @@
 class Play < ApplicationRecord
-  belongs_to :account
+  belongs_to :user
   belongs_to :video
 
   def update_balances
-    account.update(balance: account.balance - duration)
-    video.account.update(balance: video.account.balance + creator_share)
+    user.update(balance: user.balance - duration)
+    video.user.update(balance: video.user.balance + creator_share)
   end
 
   def update_views

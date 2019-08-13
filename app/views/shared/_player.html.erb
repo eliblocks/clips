@@ -3,8 +3,8 @@
     <div class="link-container">
       <%= image_tag "browzable_logo_white.png", width: 130, height: 32 %> 
       <span class="divider-player">&#8226;</span>
-      <span id="balance" data-balance="<%= current_account.balance %>">
-        <%= current_account.balance / 60 %>
+      <span id="balance" data-balance="<%= current_user.balance %>">
+        <%= current_user.balance / 60 %>
       </span>
     </div>
   <% end %>

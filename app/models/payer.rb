@@ -1,10 +1,9 @@
 require 'paypal-sdk-rest'
 
 class Payer
-
   def initialize(user)
     @user = user
-    @amount = @user.account.receivable
+    @amount = @user.receivable
     @payout = build_payout
     @paypal_batch_id = SecureRandom.hex(8)
     @paypal_payment_id = SecureRandom.hex(12)
@@ -42,7 +41,7 @@ class Payer
     end
     batch = Batch.create(paypal_id: @paypal_batch_id)
     payment = Payment.create(batch_id: batch.id, user_id: @user.id)
-    new_balance = @user.account.balance - @amount
-    @user.account.update(balance: new_balance)
+    new_balance = @user.balance - @amount
+    @user.update(balance: new_balance)
   end
 end

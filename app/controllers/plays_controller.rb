@@ -4,7 +4,7 @@ class PlaysController < ApplicationController
   def create
     @play = Play.new(play_params)
     @play.price = @play.video.price
-    @play.account_id = current_account.id
+    @play.user_id = current_user.id
 
     if @play.save
       @play.update_balances
