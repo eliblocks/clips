@@ -1,355 +1,310 @@
-@import "bootstrap";
-@import "font-awesome";
-@import "static";
-@import "videos";
-@import "users";
-@import "embeds";
-@import "accounts";
-@import "movies";
-
-$small: 576px;
-$medium: 768px;
-$large: 992px;
-$extralarge: 1200px;
-
-html {
-  position: relative;
-  min-height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
-.br-navbar {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.iframe-redirect-root {
-  position: relative;
-}
-
-.share-link {
-
-}
-
-.card {
-  height: 100%;
-}
-
-.alert-notice {
-  @extend .alert-info;
-}
-
-#error_explanation {
-  h2 {
-    @extend h4;
-    @extend .alert;
-    @extend .alert-danger;
-  }
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background-color: #f5f5f5;
-
-}
-
-.footer-links {
-  margin-bottom: 0px; //ul has bottom margin that causes vertical scroll
-}
-
-.footer-links li {
-  display: inline-block;
-  margin-left: 1rem;
-}
-
-.footer-link {
-  color: rgba(0, 0, 0, 0.5);
-  &:hover {
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-  }
-}
-
-#navbarDropdown {
-  cursor: pointer;
-}
-
-
-.br-card {
-
-  display: flex;
-  flex-direction: column;
-  border: none;
-  margin: 1em;
-
-  img {
-
-    width: 100%;
-  }
-}
-
-// clickable card
-
-.preview-group {
-  position: relative;
-}
-
-
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
-    animation: spin 2s linear infinite;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    display: none;
-}
-
-.preview-loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 5em;
-  height: 5em;
-  animation: spin 2s linear infinite;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 30%;
-  center: 50%;
-  z-index: 2;
-  display: none;
-
-}
-
-.preview-container {
-  position: relative;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.btn-square {
-  border-radius: 0;
-}
-
-.input-square {
-  border-radius: 0;
-}
-
-input[type='file'] {
-  color: transparent;
-}
-
-.br-info {
-  display: flex !important;
-  align-self: center !important;
-  justify-content: flex-end;
-}
-
-@include media-breakpoint-down(sm) {
-
-  .link-container {
-    font-size: .75rem;
-  }
-
-  .link-container img {
-    width: 74px;
-    height: 18px;
-  }
-
-  .navbar {
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-
-  .upload-ad {
-    display: none;
-  }
-}
-
-
-.icon-link {
-  color: white;
-  text-decoration: none;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-.browzable-brand {
-  display: flex;
-  align-items: center;
-  margin-right: 1em;
-}
-
-.br-icon {
-  color: black;
-  font-size: 1.2em;
-  &:hover {
-    text-decoration: none;
-    color: black;
-  }
-  margin-right: 2px;
-}
-
-.br-balance {
-  color: black;
-  font-weight: bold;
-  font-size: 1.2em;
-  &:hover {
-    text-decoration: none;
-    color: black;
-  }
-}
-
-.dot-separator {
-  margin-right: .2em;
-  margin-left: .2em;
-}
-
-.cloudinary-fileupload {
-  display: none;
-}
-
-.btn-link {
-  cursor: pointer;
-}
-
-.custom-file-upload {
-  @extend .btn;
-  @extend .btn-primary;
-}
-
-.custom-file-upload-lg {
-  @extend .btn-lg;
-}
-
-.btn {
-  z-index: 10;
-}
-
-#search-input {
-  width: 20em;
-}
-
-@include media-breakpoint-only(xl) {
-  .search-nav {
-    margin-left: 4rem;
-  }
-}
-
-@include media-breakpoint-only(lg) {
-  #search-input {
-    width: 15em;
-  }
-  .search-nav {
-    margin-left: 2rem;
-  }
-}​
-
-
-
-
-
-.search-control:focus {
-  box-shadow: none;
-}
-
-.pagination > .active {
-  &:hover {
-    color: white;
-  }
-}
-
-.pagination {
-  justify-content: flex-end;
-}
-
-.facebook-button, .facebook-button:hover, .facebook-button:focus {
-  text-indent: 38px;
-  width: 100%;
-
-  background-color: #264285;
-  background-image: linear-gradient(#3857A1,#264285);
-  border-color: #264285;
-  color: #fff;
-
-  font-size: 16px;
-  line-height: 18px;
-  padding: 10px 15px;
-  height: 40px;
-
-  display: inline-block;
-  position: relative;
-  margin: 0;
-  border: 1px solid #e5e5e5;
-  // border-radius: 3px;
-  cursor: pointer;
-  white-space: nowrap;
-  font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
-  font-weight: 100;
-  text-align: center;
-  vertical-align: baseline;
-  box-sizing: border-box;
-
-  text-decoration: none;
-  z-index: 10;
-}
-
-.facebook-button:before {
-  width: 38px;
-  height: 38px;
-  background-size: 38px;
-  content: "";
-  display: block;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center center;
-  top: 0;
-  left: 0;
-  border-right: 1px solid #264285;
-  background-image: image-url("FB-f-Logo__blue_72.png");
-}
-
-#landing-button {
-  border: none;
-  width: auto;
-}
-
-.modal-body {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-.modal-content {
-
-}
+// @import "font-awesome";
+// @import "static";
+// @import "videos";
+// @import "users";
+
+// $small: 576px;
+// $medium: 768px;
+// $large: 992px;
+// $extralarge: 1200px;
+
+// html {
+//   position: relative;
+//   min-height: 100%;
+//   margin: 0px;
+//   padding: 0px;
+// }
+
+// body {
+//   margin-bottom: 60px;
+// }
+
+// .br-navbar {
+//   padding-top: 10px;
+//   padding-bottom: 10px;
+// }
+
+// .iframe-redirect-root {
+//   position: relative;
+// }
+
+// .share-link {
+
+// }
+
+// .card {
+//   height: 100%;
+// }
+
+// .alert-notice {
+//   @extend .alert-info;
+// }
+
+// #error_explanation {
+//   h2 {
+//     @extend h4;
+//     @extend .alert;
+//     @extend .alert-danger;
+//   }
+//   ul {
+//     color: red;
+//     margin: 0 0 30px 0;
+//   }
+// }
+
+// .footer {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   height: 60px;
+//   line-height: 60px;
+//   background-color: #f5f5f5;
+
+// }
+
+// .footer-links {
+//   margin-bottom: 0px; //ul has bottom margin that causes vertical scroll
+// }
+
+// .footer-links li {
+//   display: inline-block;
+//   margin-left: 1rem;
+// }
+
+// .footer-link {
+//   color: rgba(0, 0, 0, 0.5);
+//   &:hover {
+//     color: rgba(0, 0, 0, 0.5);
+//     text-decoration: none;
+//   }
+// }
+
+// #navbarDropdown {
+//   cursor: pointer;
+// }
+
+
+// .br-card {
+
+//   display: flex;
+//   flex-direction: column;
+//   border: none;
+//   margin: 1em;
+
+//   img {
+
+//     width: 100%;
+//   }
+// }
+
+// // clickable card
+
+// .preview-group {
+//   position: relative;
+// }
+
+
+// .loader {
+//     border: 16px solid #f3f3f3; /* Light grey */
+//     border-top: 16px solid #3498db; /* Blue */
+//     border-radius: 50%;
+//     width: 5em;
+//     height: 5em;
+//     animation: spin 2s linear infinite;
+//     position: absolute;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-top: 2em;
+//     left: 0;
+//     right: 0;
+//     z-index: 2;
+//     display: none;
+// }
+
+// .preview-loader {
+//   border: 16px solid #f3f3f3; /* Light grey */
+//   border-top: 16px solid #3498db; /* Blue */
+//   border-radius: 50%;
+//   width: 5em;
+//   height: 5em;
+//   animation: spin 2s linear infinite;
+//   position: absolute;
+//   margin-left: auto;
+//   margin-right: auto;
+//   left: 0;
+//   right: 0;
+//   top: 30%;
+//   center: 50%;
+//   z-index: 2;
+//   display: none;
+
+// }
+
+// .preview-container {
+//   position: relative;
+// }
+
+// @keyframes spin {
+//     0% { transform: rotate(0deg); }
+//     100% { transform: rotate(360deg); }
+// }
+
+// .btn-square {
+//   border-radius: 0;
+// }
+
+// .input-square {
+//   border-radius: 0;
+// }
+
+// input[type='file'] {
+//   color: transparent;
+// }
+
+// .br-info {
+//   display: flex !important;
+//   align-self: center !important;
+//   justify-content: flex-end;
+// }
+
+// .icon-link {
+//   color: white;
+//   text-decoration: none;
+//   &:hover {
+//     color: white;
+//     text-decoration: none;
+//   }
+// }
+
+// .browzable-brand {
+//   display: flex;
+//   align-items: center;
+//   margin-right: 1em;
+// }
+
+// .br-icon {
+//   color: black;
+//   font-size: 1.2em;
+//   &:hover {
+//     text-decoration: none;
+//     color: black;
+//   }
+//   margin-right: 2px;
+// }
+
+// .br-balance {
+//   color: black;
+//   font-weight: bold;
+//   font-size: 1.2em;
+//   &:hover {
+//     text-decoration: none;
+//     color: black;
+//   }
+// }
+
+// .dot-separator {
+//   margin-right: .2em;
+//   margin-left: .2em;
+// }
+
+// .cloudinary-fileupload {
+//   display: none;
+// }
+
+// .btn-link {
+//   cursor: pointer;
+// }
+
+// .custom-file-upload {
+//   @extend .btn;
+//   @extend .btn-primary;
+// }
+
+// .custom-file-upload-lg {
+//   @extend .btn-lg;
+// }
+
+// .btn {
+//   z-index: 10;
+// }
+
+// #search-input {
+//   width: 20em;
+// }
+
+// .search-control:focus {
+//   box-shadow: none;
+// }
+
+// .pagination > .active {
+//   &:hover {
+//     color: white;
+//   }
+// }
+
+// .pagination {
+//   justify-content: flex-end;
+// }
+
+// .facebook-button, .facebook-button:hover, .facebook-button:focus {
+//   text-indent: 38px;
+//   width: 100%;
+
+//   background-color: #264285;
+//   background-image: linear-gradient(#3857A1,#264285);
+//   border-color: #264285;
+//   color: #fff;
+
+//   font-size: 16px;
+//   line-height: 18px;
+//   padding: 10px 15px;
+//   height: 40px;
+
+//   display: inline-block;
+//   position: relative;
+//   margin: 0;
+//   border: 1px solid #e5e5e5;
+//   // border-radius: 3px;
+//   cursor: pointer;
+//   white-space: nowrap;
+//   font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+//   font-weight: 100;
+//   text-align: center;
+//   vertical-align: baseline;
+//   box-sizing: border-box;
+
+//   text-decoration: none;
+//   z-index: 10;
+// }
+
+// .facebook-button:before {
+//   width: 38px;
+//   height: 38px;
+//   background-size: 38px;
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   top: 0;
+//   left: 0;
+//   border-right: 1px solid #264285;
+//   background-image: image-url("FB-f-Logo__blue_72.png");
+// }
+
+// #landing-button {
+//   border: none;
+//   width: auto;
+// }
+
+// .modal-body {
+//   padding-top: 3rem;
+//   padding-bottom: 3rem;
+// }
+
+// .modal-content {
+
+// }
 
 
 

@@ -15,8 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
-
 // require("@rails/activestorage").start()
 // Import the plugins
 
@@ -24,7 +22,8 @@ console.log('Hello World from Webpacker')
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
-import 'bootstrap'
+import "bootstrap";
+import "../stylesheets/application"
 
 const application = Application.start()
 const context = require.context("../src/controllers", true, /\.js$/)

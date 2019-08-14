@@ -1,152 +1,152 @@
-.video-time {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: white;
-  font-weight: bold;
-  z-index: 1;
-}
+// .video-time {
+//   position: absolute;
+//   bottom: 5px;
+//   right: 5px;
+//   color: white;
+//   font-weight: bold;
+//   z-index: 1;
+// }
 
-.uploader-link {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  &:hover {
-    color: black;
-    text-decoration: none;
-  }
-}
+// .uploader-link {
+//   color: black;
+//   font-weight: bold;
+//   text-decoration: none;
+//   &:hover {
+//     color: black;
+//     text-decoration: none;
+//   }
+// }
 
-.clickable {
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left: 0;
-  z-index: 1;
-}
+// .clickable {
+//   position:absolute;
+//   width:100%;
+//   height:100%;
+//   top:0;
+//   left: 0;
+//   z-index: 1;
+// }
 
-.user-link {
-  position: relative;
-  z-index: 2;
-}
+// .user-link {
+//   position: relative;
+//   z-index: 2;
+// }
 
-.br-card-img-link {
-  position: relative;
-}
+// .br-card-img-link {
+//   position: relative;
+// }
 
-.br-card-link {
-  &:hover {
-    text-decoration: none;
-  }
-}
+// .br-card-link {
+//   &:hover {
+//     text-decoration: none;
+//   }
+// }
 
-.br-card a:hover {
-  color: black;
-}
-
-
-.br-card-title {
-  color: black;
-  font-size: 1.2em;
-  font-weight: 500;
-  &:hover {
-    color: black;
-  }
-}
-
-.br-card-subtitle {
-  font-weight: 400;
-
-}
+// .br-card a:hover {
+//   color: black;
+// }
 
 
-.br-card-body {
-  position: relative;
-  padding-top: 0.75em;
+// .br-card-title {
+//   color: black;
+//   font-size: 1.2em;
+//   font-weight: 500;
+//   &:hover {
+//     color: black;
+//   }
+// }
 
-}
+// .br-card-subtitle {
+//   font-weight: 400;
 
-.video-upload {
-  display: none;
-}
-
-.user-info img {
-  width: 25px;
-  height: 25px;
-}
-
-
-.video-background {
-  opacity: .2;
-  background-repeat:no-repeat;
-  background-size:cover;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
+// }
 
 
-.link-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-right: 1em;
-  img {
-    margin-bottom: .3em;
-  }
-}
+// .br-card-body {
+//   position: relative;
+//   padding-top: 0.75em;
 
-.minutes-balance {
-  height: 44px;
-  display: none;
-}
+// }
+
+// .video-upload {
+//   display: none;
+// }
+
+// .user-info img {
+//   width: 25px;
+//   height: 25px;
+// }
 
 
-.video-info-container {
-  padding: 1.25em;
-  display: none;
-}
+// .video-background {
+//   opacity: .2;
+//   background-repeat:no-repeat;
+//   background-size:cover;
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   height: 100%;
+//   width: 100%;
+// }
 
 
-#browzable-video {
-  width: 100% !important;
-  height: 100% !important;
-}
+// .link-container {
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   color: white;
+//   font-size: 1.2em;
+//   font-weight: bold;
+//   margin-right: 1em;
+//   img {
+//     margin-bottom: .3em;
+//   }
+// }
 
-.divider-player {
-  margin-right: .3em;
-  margin-left: .3em;
-}
+// .minutes-balance {
+//   height: 44px;
+//   display: none;
+// }
 
-#continue {
-  display: none;
-}
 
-.embed-code-container {
-  padding: 15px;
-  overflow-wrap: break-word
-}
+// .video-info-container {
+//   padding: 1.25em;
+//   display: none;
+// }
 
-.upload-preview-btn {
-  width: 100%;
-}
 
-.delete-section {
-  margin-top: 7rem;
-}
+// #browzable-video {
+//   width: 100% !important;
+//   height: 100% !important;
+// }
 
-.video-details {
-  display: flex; 
-  align-items: center;
-}
+// .divider-player {
+//   margin-right: .3em;
+//   margin-left: .3em;
+// }
 
-.share-btn {
-  margin-left: auto;
-}
+// #continue {
+//   display: none;
+// }
+
+// .embed-code-container {
+//   padding: 15px;
+//   overflow-wrap: break-word
+// }
+
+// .upload-preview-btn {
+//   width: 100%;
+// }
+
+// .delete-section {
+//   margin-top: 7rem;
+// }
+
+// .video-details {
+//   display: flex; 
+//   align-items: center;
+// }
+
+// .share-btn {
+//   margin-left: auto;
+// }
 

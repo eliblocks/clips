@@ -14,8 +14,10 @@
     <%= render 'layouts/gtag' %>
     <%= csrf_meta_tags %>
     <%= description_meta_tag(yield(:description)) %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://cdn.jwplayer.com/libraries/NEHubOqB.js"> </script>
     <script src="https://js.braintreegateway.com/web/dropin/1.8.0/js/dropin.min.js"></script>
@@ -42,9 +44,8 @@
       <% end %>
       <%= render 'layouts/footer' %>
     <% end %>
-    <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'bootstrap' %>
+    
+    
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/6260493.js"></script>
   <% end %>
 </html>

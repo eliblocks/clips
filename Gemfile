@@ -37,7 +37,7 @@ gem 'pry', '~> 0.12.2'
 
 gem "uppy-s3_multipart", "~> 0.2"
 gem 'streamio-ffmpeg'
-gem 'bootstrap'
+# gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'aws-sdk-s3', '~> 1'
