@@ -1,8 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
-// $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
-// @import "~@fortawesome/fontawesome-free/scss/fontawesome";
-// @import "~@fortawesome/fontawesome-free/scss/solid";
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
 
 $small: 576px;
 $medium: 768px;
