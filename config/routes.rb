@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   root 'static#welcome'
 
-  resources :users
+  # resources :users
   resources :charges
 
   resources :videos do
@@ -74,7 +74,6 @@ Rails.application.routes.draw do
     get 'sessions/:id', to: 'sessions#impersonate', as: "impersonate"
   end
 
-
   devise_scope :user do
     get 'demo', to: 'users/sessions#demo'
     namespace :users do
@@ -82,4 +81,6 @@ Rails.application.routes.draw do
       get 'test_login/:id', to: 'sessions#test_login', as: "test_login"
     end
   end
+
+  get '/:id', to: 'users#show', as: :user
 end

@@ -7,6 +7,8 @@ class ProfileController < ApplicationController
     end
   end
 
+  private
+
   def profile_params
     params.require(:user).permit(:image, :paypal_email)
   end

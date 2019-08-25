@@ -38,10 +38,11 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="buttton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Accounts
+            Account
           </a>
           <div class="dropdown-menu dropdown-menu-right nav-item" aria-labelledby="dropdownMenuButton">
-             <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Profile", user_path(current_user.username), class: "dropdown-item" %>
             <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
             <%= link_to "Usage", usage_path, class: "dropdown-item" %>
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -64,7 +65,6 @@
       <li class="nav-item">
         <%= link_to "Sign up", new_user_registration_path, class: "nav-link auth-link" %>
       </li>
-      
     </ul>
   </nav>
 <% end %>

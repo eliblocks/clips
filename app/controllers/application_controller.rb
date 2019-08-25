@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_user
 
   def authenticate_facebook
     redirect_to root_url unless user_signed_in?
@@ -35,6 +36,13 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :paypal_email, :category])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :paypal_email, :category])
+      devise_parameter_sanitizer.permit(:account_update,
+        keys: [:full_name, :paypal_email, :category, :username])
+    end
+
+    def set_user
+      if controller_name == "users" && params[:id]
+        @user = User.find_by_username!(params[:id])
+      end
     end
 end

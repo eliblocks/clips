@@ -26,5 +26,6 @@ import "bootstrap";
 import "../stylesheets/application"
 
 const application = Application.start()
+Rails.start();
 const context = require.context("../src/controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))

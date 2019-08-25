@@ -15,7 +15,7 @@ export default class extends Controller {
           var newUrl = oldUrl.replace(/\w+$/, id);
           $("#cloudinary-image").attr("src", newUrl);
           $("#image-field").attr("value", id);
-          form = document.querySelector("#profile-pic-form")
+          var form = document.querySelector("#profile-pic-form")
           Rails.fire(form, "submit");
         }
       }
