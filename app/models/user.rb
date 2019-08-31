@@ -8,10 +8,14 @@ class User < ApplicationRecord
   has_many :payments
   has_many :videos
 
-  attribute :username, default: SecureRandom.alphanumeric(8)
+  before_create :set_username
 
   def to_param
     username
+  end
+
+  def set_username
+    self.username = SecureRandom.alphanumeric(8)
   end
 
   def uploader?
