@@ -75,4 +75,8 @@ Rails.application.configure do
   config.braintree_id = Rails.application.credentials.braintree_id
   config.braintree_public_key = Rails.application.credentials.braintree_public_key
   config.braintree_private_key = Rails.application.credentials.braintree_private_key
+
+  # Letter Opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end
