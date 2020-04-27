@@ -32,8 +32,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.full_name = auth.info.name
       user.link = auth.extra.raw_info.link
-      user.referrer = origin #for adwords tracking
-      # user.image = auth.info.image # assuming the user model has an image
+      user.referrer = origin
       user.skip_confirmation!
     end
   end
@@ -42,10 +41,6 @@ class User < ApplicationRecord
 
   def image_id
     image.split('/')[1]
-  end
-
-  def image_version
-    image.split('/')[0]
   end
 
   def self.cl_base_url

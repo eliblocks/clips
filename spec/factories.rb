@@ -2,22 +2,17 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     full_name  { Faker::Name.name }
-    password { "mygh554d" }
+    password { "password" }
     confirmed_at { Time.new('2019-05-01') }
   end
 
-  factory :account do
-    user
-    balance { 5000 }
-  end
-
   factory :video do
-    account
+    user
   end
 
   factory :play do
     video
-    account
+    user
     duration { 10 }
   end
 end

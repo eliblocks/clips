@@ -106,10 +106,6 @@ class Video < ApplicationRecord
     image.split('/')[1]
   end
 
-  def image_version
-    image.split('/')[0]
-  end
-
   def self.cl_base_url
     "https://res.cloudinary.com/eli/image/upload"
   end
@@ -122,22 +118,8 @@ class Video < ApplicationRecord
     views/60
   end
 
-  def preview
-    return image_url if image
-    "jw_black.png"
-  end
-
   def seconds_played
     plays.sum(:duration) || 0
-  end
-
-  def s3_download_url
-    presigner = Aws::S3::Presigner.new(client: Aws::S3::Client.new)
-    presigner.presigned_url(
-      "get_object",
-      key: s3_key,
-      bucket: "browzable"
-    )
   end
 
   def mux_playback_url
