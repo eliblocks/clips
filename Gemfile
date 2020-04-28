@@ -47,6 +47,7 @@ gem 'themoviedb'
 gem 'ffprober'
 gem 'jwt'
 gem 'tzinfo-data'
+gem 'honeybadger', '~> 4.0'
 
 group :development, :test do
   gem 'byebug'
