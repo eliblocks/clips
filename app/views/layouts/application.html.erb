@@ -17,11 +17,11 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script src="https://cdn.jwplayer.com/libraries/NEHubOqB.js"> </script>
     <script src="https://js.braintreegateway.com/web/dropin/1.8.0/js/dropin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-    
+    <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/7.8.2/video.min.js"></script>
   </head>
 
   <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>

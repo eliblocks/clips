@@ -6,20 +6,3 @@
 <%= content_tag :div, "", class: "browzable-wrapper", data: { url: @video.clip.url, video_id: @video.id } do %>
   <div id="browzable-video"></div>
 <% end %>
-
-
-
-<script type="text/javaScript">
-  
-  var wrapper = document.querySelector(".browzable-wrapper");
-  var url = wrapper.dataset.url;
-  var videoId = wrapper.dataset.videoId;
-  var playerInstance = jwplayer("browzable-video");
-  var balance = $(".minutes-balance");
-  var playDuration = 10;
-
-  playerInstance.setup({
-      file: url
-  });
-
-</script>

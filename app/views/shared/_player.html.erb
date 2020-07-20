@@ -1,22 +1,11 @@
-<div class="minutes-balance">
-  <%= link_to root_path, class: "icon-link" do %>
-    <div class="link-container">
-      <%= image_tag "browzable_logo_white.png", width: 130, height: 32 %> 
-      <span class="divider-player">&#8226;</span>
-      <span id="balance" data-balance="<%= current_user.balance %>">
-        <%= current_user.balance / 60 %>
-      </span>
-    </div>
-  <% end %>
-</div>
-<%= content_tag :div,
-                "",
-                class: "browzable-wrapper",
-                data: {
-                  url: video.mux_playback_url,
-                  video_id: video.id,
-                  controller: "player" } do %>
-  <div id="browzable-video" data-target="player.browzableVideo">
-  </div>
-<% end %>
+<video
+  id="br-video"
+  class="video-js"
+  controls
+  data-setup='{}'
+>
+  <source type="application/x-mpegURL" src="<%= video.mux_playback_url %>" />
+</video>
+
+  
 

@@ -1,5 +1,4 @@
 class Video < ApplicationRecord
-  include AlgoliaSearch
 
   belongs_to :user
   has_many :plays
@@ -14,13 +13,6 @@ class Video < ApplicationRecord
   scope :featured, -> { where(featured: true) }
   scope :movies, -> { where.not(imdb_id: nil) }
   scope :viewable, -> { unremoved.where(suspended: false) }
-
-  algoliasearch per_environment: true do
-    attribute :title, :views
-    searchableAttributes ['title']
-    hitsPerPage 4
-    customRanking ['desc(views)']
-  end
 
   def s3_key
     storage_url[/\w{20,}.*/]

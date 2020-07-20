@@ -1,0 +1,10 @@
+Searching 299 files for "config.i18n.fallbacks"
+
+/Users/eliyahublock/sites/clips/config/environments/production.rb:
+   82    # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+   83    # the I18n.default_locale when a translation cannot be found).
+   84:   config.i18n.fallbacks = [I18n.default_locale]
+   85  
+   86    # Send deprecation notices to registered listeners.
+
+1 match in 1 file

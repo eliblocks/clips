@@ -32,44 +32,6 @@ export default class extends Controller {
 
   connect() {
     const browzableVideo = this.browzableVideoTarget
-    const playerInstance = jwplayer(browzableVideo);
-    const playDuration = 10
-    let counter = 0
-    let prevPosition = 0
-
-    playerInstance.setup({
-      autostart: "true",
-      playlist: [{
-        file: $(".browzable-wrapper").data("url"),
-        // withCredentials: true
-      }]
-    });
-
-    jwplayer().on('ready', function() {
-      console.log("player ready");
-      var playerBalance = $(".minutes-balance")
-      
-      $(".jw-spacer").after(playerBalance);
-      playerBalance.show();
-    });
-  
-    jwplayer().on('viewable', function() {
-      $(".video-info-container").show();
-    });
-  
-    //inaccurate timekeeping
-    jwplayer().on('time', (time) => {
-      counter += time.position - prevPosition;
-      prevPosition = time.position;
-  
-      if (counter > (playDuration + 1) || counter < 0 ) {
-        counter = 0
-      }
-  
-      if (counter > playDuration) {
-        this.sendPlay(playDuration);
-        counter -= playDuration;
-      }
-    });
   }
+
 }

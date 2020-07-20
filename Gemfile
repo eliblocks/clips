@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.0'
+ruby '2.7.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,7 +8,7 @@ end
 
 
 # Default
-gem 'rails'
+gem 'rails', '6.0.3.2'
 gem 'webpacker'
 gem 'pg'
 gem 'puma'
@@ -39,7 +39,6 @@ gem 'cloudinary'
 gem 'braintree'
 gem 'paypal-sdk-rest'
 gem 'sendgrid-ruby'
-gem 'algoliasearch-rails'
 gem 'rack-cors'
 gem 'bootsnap'
 gem 'omdbapi'
