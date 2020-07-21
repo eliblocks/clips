@@ -65,16 +65,21 @@ body[data-action="welcome"] {
   height: 60px;
   line-height: 60px;
   background-color: #f5f5f5;
+}
 
+body[data-action="welcome"] .footer {
+  background: transparent;
+
+  .footer-link {
+    color: white;
+  }
 }
 
 .footer-links {
-  margin-bottom: 0px; //ul has bottom margin that causes vertical scroll
 }
 
-.footer-links li {
-  display: inline-block;
-  margin-left: 1rem;
+.footer-links a {
+  padding: 1em;
 }
 
 .footer-link {
@@ -494,4 +499,8 @@ input[type='file'] {
 
 .landing-content {
   padding-top: 10rem;
+}
+
+.landing-spacer {
+  height: 100%;
 }

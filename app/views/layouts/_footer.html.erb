@@ -1,14 +1,14 @@
 <br>
 <footer class="footer text-muted">
-  <div class="container">
-    <ul class="footer-links">
-      <li><%= link_to "About", "/about", class: "footer-link" %></li>
-      <li><%= link_to "Contact", "/contact", class: "footer-link"%></li>
-      <li><%= link_to "Privacy", "/privacy", class: "footer-link" %></li>
-      <li><%= link_to "Terms", "/terms", class: "footer-link" %></li>
+  <div class="container text-center">
+    <div class="footer-links">
+      <%= link_to "About", "/about", class: "footer-link" %>
+      <%= link_to "Contact", "/contact", class: "footer-link"%>
+      <%= link_to "Privacy", "/privacy", class: "footer-link" %>
+      <%= link_to "Terms", "/terms", class: "footer-link" %>
       <% if current_user && current_user.admin? %>
-        <li class="float-right"><%= link_to "Admin", "/admin", class: "footer-link" %></li>
+        <%= link_to "Admin", "/admin", class: "footer-link" %>
       <% end %>
-    </ul>
+    </div>
   </div>
 </footer>
