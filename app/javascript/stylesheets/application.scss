@@ -388,9 +388,8 @@ input[type='file'] {
   display: none;
 }
 
-.video-info-container {
-  padding: 1.25em;
-  display: none;
+.video-js {
+
 }
 
 #browzable-video {
@@ -423,10 +422,6 @@ input[type='file'] {
 .video-details {
   display: flex; 
   align-items: center;
-}
-
-.share-btn {
-  margin-left: auto;
 }
 
 .profile-pic {

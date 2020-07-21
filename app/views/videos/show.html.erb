@@ -3,18 +3,12 @@
   <div class="row mt-3">
     <div class="col-lg-10 m-auto">
       <%= render 'shared/player', video: @video %>
-      <div class="video-info-container">
+      <div class="video-info-container mt-3">
           <h4><%= @video.title %></h4>
           <div class="video-details">
             <span><%= @video.minutes %> Views</span>
             <span>&nbsp; | &nbsp;</span>
             <span><%= time_ago_in_words(@video.created_at) %> ago</span>
-            <button type="button" 
-                  class="btn btn-secondary share-btn" 
-                  data-toggle="modal" 
-                  data-target="#iframe-modal">
-              Share
-            </button>
           </div>
           <hr>
         <div class="user-info">

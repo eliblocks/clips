@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-10 m-auto">
     <%= cl_image_tag(@video.image, class: "img-fluid mt-3" ) %>
-    <div class="video-info-container">
+    <div class="video-info-container mt-2">
         <h4><%= @video.title %></h4>
         <span><%= @video.minutes %> Views</span> | <span><%= time_ago_in_words(@video.created_at) %> ago</span>
         <button type="button" class="btn btn-secondary share-link float-right" data-toggle="modal" data-target="#iframe-modal">Share</button>
