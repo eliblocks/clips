@@ -28,8 +28,6 @@
     <% if params[:controller] == "embeds" %>
       <%= yield %>
     <% elsif action_name == "welcome" %>
-      <%= render 'layouts/nav' %>
-      <%= render 'shared/auth_modal' unless user_signed_in? %>
       <%= yield %>
     <% else %>
       <%= render 'layouts/nav' %>

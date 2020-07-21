@@ -20,6 +20,11 @@ body {
   margin-bottom: 60px;
 }
 
+body[data-action="welcome"] {
+  background-image: url("../images/red_stage.jpg");
+  background-size: cover;
+}
+
 .br-navbar {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -484,4 +489,9 @@ input[type='file'] {
   margin-top: 15px;
   margin-bottom: 25px !important;
   color: #ffffff;
+}
+
+
+.landing-content {
+  padding-top: 10rem;
 }
