@@ -15,7 +15,7 @@
     "popper.js": "^1.15.0",
     "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0",
-    "uppy": "^0.30.4",
+    "uppy": "^1.21.2",
     "webpack": "^4.0.0"
   },
   "devDependencies": {

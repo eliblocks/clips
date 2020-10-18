@@ -18,7 +18,7 @@ export default class extends Controller {
       })
       .use(AwsS3Multipart, {
         limit: 10,
-        serverUrl: '/'
+        companionUrl: '/'
       })
     uppy.on('complete', (result) => {
       result.successful.map(video => {
