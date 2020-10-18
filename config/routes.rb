@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # mount ClipUploader.upload_endpoint(:cache) => "/clips/upload"
-  # mount Shrine.presign_endpoint(:cache) => "/clips/presign"
-
   mount UPPY_S3_MULTIPART_APP => "/s3/multipart"
 
 
