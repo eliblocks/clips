@@ -1,39 +1,44 @@
 <% provide(:title, "Library") %>
 
-<div class="row mt-2">
-  <div class="col-lg-1">
-    <div class="btn btn-primary" id="select-files" data-controller="video-upload">
-      Upload
+<% if @videos.any? %>
+  <div class="align-right">
+    <span class="btn btn-primary mt-4 ml-auto" id="select-files" data-controller="video-upload">
+      Upload a new video
+    </span>
+  </div>
+  <div class="mt-2">
+    <table class="table library-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Views</th>
+          <th>Date Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @videos.order(created_at: :desc).each do |video| %>
+          <tr onclick="window.location = '<%= edit_video_path(video) %>' ">
+            <td><%= video.title %></td>
+            <td><%= youtube_time(video.duration) if video.duration %></td>
+            <td><%= video.minutes %></td>
+            <td><%= video.created_at.to_formatted_s(:db) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="row mt-4">
+    <div class="col-md-6 m-auto text-center">
+      <p class="lead">
+          Browzable helps video creators earn money.
+          Your viewers will pay &cent;1 for every minute they spend watching your content,
+          and you get 70%.
+      </p>
+      <span class="btn btn-primary mt-4 ml-auto" id="select-files" data-controller="video-upload">
+        Choose videos to upload
+      </span>
     </div>
   </div>
-  <div class="col-lg-11">
-    <% if @videos %>
-      <table class="table library-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Duration</th>
-            <th>Views</th>
-            <th>Date Added</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @videos.order(created_at: :desc).each do |video| %>
-            <tr onclick="window.location = '<%= edit_video_path(video) %>' ">
-              <td><%= video.title %></td>
-              <td><%= youtube_time(video.duration) if video.duration %></td>
-              <td><%= video.minutes %></td>
-              <td><%= video.created_at.to_formatted_s(:db) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-
-    <br><p>You don't have any uploaded videos yet. <%= link_to "Upload videos", new_video_path %></p>
-    <% end %>
-  </div>
-</div>
-
-
-
+<% end %>
