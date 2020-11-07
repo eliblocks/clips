@@ -18,15 +18,6 @@
         <%= f.email_field :email, autofocus: true, class: "form-control" %>
       </div>
 
-      <% if request.referrer && URI(request.referrer).path == '/' %>
-        <!-- <div class="form-group">
-          <%= f.label :paypal_email %>
-          <em>(if different from account email)</em>
-          <%= f.email_field :paypal_email, class: "form-control" %>
-        </div> -->
-        <%= f.hidden_field :category, value: "uploader" %>
-      <% end %>
-
       <div class="form-group">
         <%= f.label :password %>
         <% if @minimum_password_length %>
@@ -42,9 +33,3 @@
     <%= render "devise/shared/links" %>
   </div>
 </div>
-
-<!-- <script>
-  $("#signup").click(function() {
-    gtag_report_conversion();
-  });
-</script> -->
