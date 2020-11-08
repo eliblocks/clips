@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users, controllers: { sessions: 'users/sessions',
-                                  registrations: "users/registrations",
-                                  omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   authenticated :user do
     root 'videos#index', as: :authenticated_root
@@ -56,6 +54,8 @@ Rails.application.routes.draw do
 
   get 'sessions/impersonate', to: 'sessions#impersonate'
 
+  get "/creators/sign_up", to: "creators#new"
+  post "creators", to: "creators#create"
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'

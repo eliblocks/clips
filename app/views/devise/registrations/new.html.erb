@@ -1,35 +1,32 @@
 <% provide(:title, "Sign up") %>
-<br>
-<div class="row">
+<div class="row mt-4">
   <div class="col-md-6 m-auto">
-    <% unless params[:type] %>
-      <h4 class="text-center">Sign up and get 100 free minutes. No credit card!</h4><br>
-    <% end %>
+    <h4 class="text-center mb-4">
+      Sign up and get 100 free minutes. No credit card!
+    </h4>
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
       <div class="form-group">
         <%= f.label :full_name %>
-        <%= f.text_field :full_name, class: "form-control" %>
+        <%= f.text_field :full_name, auto_focus: true, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
       </div>
 
       <div class="form-group">
         <%= f.label :password %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+        <% end %>
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>      
-
-      <%= f.submit "Sign up", class: "btn btn-primary", id: "signup", onclick: "gtag_report_conversion" %>
-
+      <%= f.submit "Sign up", class: "btn btn-primary mb-4", id: "signup" %>
     <% end %>
-    <br>
     <%= render "devise/shared/links" %>
   </div>
 </div>

@@ -26,16 +26,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def after_inactive_sign_up_path_for(resource)
-      root_url
-    end
-
-    def after_sign_up_path_for(resource)
-      root_url
-    end
-
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :paypal_email, :category])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :paypal_email, :category, :username])
       devise_parameter_sanitizer.permit(:account_update,
         keys: [:full_name, :paypal_email, :category, :username])
     end
