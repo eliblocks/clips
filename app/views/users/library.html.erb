@@ -42,3 +42,9 @@
     </div>
   </div>
 <% end %>
+
+<% if current_user.category == "uploader" && current_user.created_at > 10.seconds.ago %>
+  <script>
+    fbq("track", "completeRegistration");
+  </script>
+<% end %>
