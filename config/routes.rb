@@ -54,8 +54,9 @@ Rails.application.routes.draw do
 
   get 'sessions/impersonate', to: 'sessions#impersonate'
 
+  get "/creators", to: "static#creators"
   get "/creators/sign_up", to: "creators#new"
-  post "creators", to: "creators#create"
+  post "/creators", to: "creators#create"
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
