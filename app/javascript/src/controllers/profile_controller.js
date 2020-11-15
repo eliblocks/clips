@@ -7,13 +7,11 @@ export default class extends Controller {
       apiKey: "845485225187822",
       uploadPreset: "ur1v3sps",
       multiple: false,
+      clientAllowedFormats: ["png","gif", "jpeg"]
     }, (error, result) => { 
         if (!error && result && result.event === "success") { 
-          console.log('Done! Here is the image info: ', result.info);
           var id = result.info.public_id;
-          var oldUrl = $("#cloudinary-image").attr("src");
-          var newUrl = oldUrl.replace(/\w+$/, id);
-          $("#cloudinary-image").attr("src", newUrl);
+          $("#cloudinary-image").attr("src", result.info.url);
           $("#image-field").attr("value", id);
           var form = document.querySelector("#profile-pic-form")
           Rails.fire(form, "submit");
