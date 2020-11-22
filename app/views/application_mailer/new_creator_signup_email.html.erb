@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Browzable has a new creator signup</h1>
+    <p><%= @creator.email %></p>
+    <% puts user_url(@creator) %>
+    <%= link_to @creator.username, user_url(@creator) %>
+  </body>
+</html>
