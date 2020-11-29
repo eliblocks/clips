@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   def set_username
-    self.username = SecureRandom.alphanumeric(8)
+    self.username ||= SecureRandom.alphanumeric(8)
   end
 
   def uploader?
