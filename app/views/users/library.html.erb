@@ -46,5 +46,7 @@
 <% if current_user.category == "uploader" && current_user.created_at > 10.seconds.ago %>
   <script>
     fbq("track", "completeRegistration");
+    gtag("event", "sign_up");
+    gtag('event', 'conversion', {'send_to': 'AW-826306890/5HbkCIXqsO0BEMrigYoD'});
   </script>
 <% end %>
