@@ -8,11 +8,10 @@ RSpec.describe "Sign up" do
 
     post '/users', params: { user: { email: 'eli@example.com', password: 'password' }}
 
-    expect(response).to redirect_to(root_path)
+    user = User.last
+    expect(response).to redirect_to(user_path(user))
 
     expect(User.count).to eq(1)
-
-    user = User.last
     expect(user.email).to eq("eli@example.com")
     expect(user.valid_password?("password")).to eq(true)
   end
