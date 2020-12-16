@@ -14,6 +14,7 @@ class CreatorsController < ApplicationController
       sign_in(@user)
       redirect_to "/library"
       ApplicationMailer.new_creator_signup_email(current_user).deliver_later
+      SendWelcomeEmailJob.set(wait: 1.hour).perform_later(@user)
     else
       @user.password = nil
       @minimum_password_length = 6
