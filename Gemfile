@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
-ruby '2.7.1'
+ruby '3.0.2'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Default
-gem 'rails', '6.0.3.2'
+gem 'rails', '6.1.4'
 gem 'webpacker'
 gem 'pg'
 gem 'puma'
@@ -45,18 +44,18 @@ gem 'themoviedb'
 gem 'ffprober'
 gem 'jwt'
 gem 'tzinfo-data'
-gem 'honeybadger', '~> 4.0'
+gem 'honeybadger'
 
 group :development, :test do
   gem 'byebug'
-  gem 'capybara', '~> 2.13'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_bot_rails'
   gem 'faker'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
