@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   mount UPPY_S3_MULTIPART_APP => "/s3/multipart"
 
-
-
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   authenticated :user do
@@ -11,14 +9,12 @@ Rails.application.routes.draw do
 
   root 'static#welcome'
 
-  # resources :users
   resources :charges
 
   resources :videos do
     member do
       patch 'remove'
       patch 'restore'
-      get 'preview'
     end
   end
 
@@ -32,10 +28,6 @@ Rails.application.routes.draw do
   get 'terms', to: 'static#terms'
   get 'close_tab', to: 'static#close_tab'
 
-  get 'users/edit', to: 'users#edit'
-  get 'users/show' , to: 'users#show'
-  get 'upload', to: 'users#upload'
-  post 'upload', to: 'users#save_uploads'
   get 'dashboard', to: 'users#dashboard'
   get 'usage', to: 'users#usage'
   get 'library', to: 'users#library'

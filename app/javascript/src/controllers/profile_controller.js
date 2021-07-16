@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import Rails from "@rails/ujs"
 
 export default class extends Controller {
   connect() {
@@ -11,8 +12,8 @@ export default class extends Controller {
     }, (error, result) => { 
         if (!error && result && result.event === "success") { 
           var id = result.info.public_id;
-          $("#cloudinary-image").attr("src", result.info.url);
-          $("#image-field").attr("value", id);
+          document.querySelector("#cloudinary-image").getAttribute("src", result.info.url);
+          document.querySelector("#image-field").setAttribute("value", id);
           var form = document.querySelector("#profile-pic-form")
           Rails.fire(form, "submit");
         }

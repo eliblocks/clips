@@ -1,28 +1,25 @@
 <% provide(:title, @video.title) %>
-<% if user_signed_in? %>
-  <div class="row mt-3">
-    <div class="col-lg-10 m-auto">
-      <%= render 'shared/player', video: @video %>
-      <div class="video-info-container mt-3">
-          <h4><%= @video.title %></h4>
-          <div class="video-details">
-            <span><%= @video.minutes %> Views</span>
-            <span>&nbsp; | &nbsp;</span>
-            <span><%= time_ago_in_words(@video.created_at) %> ago</span>
-          </div>
-          <hr>
-        <div class="user-info">
-          <%= link_to @video.user.full_name, user_path(@video.user.username), class: "uploader-link" %>
+
+<div class="row mt-3">
+  <div class="col-lg-10 m-auto">
+    <%= render 'shared/player', video: @video %>
+    <div class="video-info-container mt-3">
+        <h4><%= @video.title %></h4>
+        <div class="video-details">
+          <span><%= @video.minutes %> Views</span>
+          <span>&nbsp; | &nbsp;</span>
+          <span><%= time_ago_in_words(@video.created_at) %> ago</span>
         </div>
-        <div class="video-description mt-3">
-          <%= @video.description %>
-        </div>
+        <hr>
+      <div class="user-info">
+        <%= link_to @video.user.full_name, user_path(@video.user.username), class: "uploader-link" %>
+      </div>
+      <div class="video-description mt-3">
+        <%= @video.description %>
       </div>
     </div>
   </div>
-<% else %>
-  <%= render 'preview' %>
-<% end %>
+</div>
 
 <div class="modal fade" id="iframe-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

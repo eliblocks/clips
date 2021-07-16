@@ -1,69 +1,68 @@
 <% if user_signed_in? %>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light br-navbar" data-controller="navbar">
-    
-    <div class="browzable-brand">
-      <%= link_to root_path do %>
-        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
-      <% end %>
-      <span class="dot-separator">&#8226;</span>
-      <%= link_to(current_user.balance/60, 
-                  root_path, class: "br-balance", id: "logo-balance") %>
-    </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-      <div class="navbar-nav search-nav">
-        <%= form_tag("/search", method: :get, class: "form-inline my-2 my-lg-0") do %>
-          <div class="input-group search-group">
-            <%= text_field_tag(:q, "", class: "search-control form-control", 
-                                placeholder: params[:q], id: "search-input") %>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-secondary"><%= fa_icon "search" %></button>
-            </div>
-          </div>
+    <div class="container-fluid">
+      <div class="browzable-brand">
+        <%= link_to root_path do %>
+          <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
         <% end %>
+        <span class="dot-separator">&#8226;</span>
+        <%= link_to(current_user.balance/60,
+                    root_path, class: "br-balance", id: "logo-balance") %>
       </div>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= nav_link "Upload", library_path %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link "Buy Minutes", new_charge_path %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="buttton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
-          </a>
-          <div class="dropdown-menu dropdown-menu-right nav-item" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Profile", user_path(current_user.username), class: "dropdown-item" %>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
-            <%= link_to "Usage", usage_path, class: "dropdown-item" %>
-            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li> 
-      </ul>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav search-nav">
+          <%= form_tag("/search", method: :get, class: "form-inline my-2 my-lg-0") do %>
+            <div class="input-group search-group">
+              <%= text_field_tag(:q, "", class: "search-control form-control",
+                                  placeholder: params[:q], id: "search-input") %>
+                <button type="submit" class="btn btn-secondary"><%= fa_icon "search" %></button>
+            </div>
+          <% end %>
+        </div>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= nav_link "Upload", library_path %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link "Buy Minutes", new_charge_path %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="buttton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu dropdown-menu-end nav-item" aria-labelledby="dropdownMenuButton">
+              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Profile", user_path(current_user.username), class: "dropdown-item" %>
+              <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" if current_user.videos.any? %>
+              <%= link_to "Usage", usage_path, class: "dropdown-item" %>
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
 <% else %>
   <nav class="navbar navbar-expand navbar-light bg-light">
-    <%= link_to root_path, class: "br-icon" do %>
-        <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
-      <% end %>
+    <div class="container-fluid">
+      <%= link_to root_path, class: "br-icon" do %>
+          <%= image_tag "browzable_logo_black.png", width: 130, height: 32, class: "mb-1 br-logo" %>
+        <% end %>
 
-    <ul class="navbar-nav ml-auto">
-       <li class="nav-item">
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Log in", new_user_session_path, class: "btn btn-primary ml-2" %>
-      </li>
-    </ul>
+      <ul class="navbar-nav ms-auto">
+         <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log in", new_user_session_path, class: "btn btn-primary ms-2" %>
+        </li>
+      </ul>
+    </div>
   </nav>
 <% end %>

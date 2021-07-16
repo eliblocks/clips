@@ -5,14 +5,3 @@
     <%= paginate @videos %>
   </div>
 </div>
-
-<% unless user_signed_in? %>
-  <script>
-    $(".br-card-img-link").click(function(e) {
-      authModal(e);
-    });
-  </script>
-<% end %>
-
-
-  

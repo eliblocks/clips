@@ -13,12 +13,6 @@ class UsersController < ApplicationController
     @user_videos = @user.videos.viewable
   end
 
-  def edit
-  end
-
-  def upload
-  end
-
   def usage
     @top_uploaders = current_user.most_watched_uploaders(5, 30)
     @top_videos = current_user.most_watched_videos(5, 30)

@@ -25,6 +25,7 @@
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
 
+/public/assets
 /public/packs
 /public/packs-test
 /node_modules

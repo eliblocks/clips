@@ -26,16 +26,16 @@
   <div class="col-md-7 offset-md-1">
     <h4>Edit <%= @video.title %></h4>
     <%= form_with(model: @video, local: true) do |form| %>
-      <div class="form-group">
+      <div class="mb-3">
         <%= form.label :title %>
         <%= form.text_field :title, class: "form-control" %>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <%= form.label :description %>
         <%= form.text_area :description, class: "form-control" %>
       </div>
       <%= form.hidden_field :image, id: "image-field" %>
-      <div class="form-group">
+      <div class="mb-3">
         <%= form.submit "Save", class: "btn btn-primary mt-3" %>
       </div>
     <% end %>
@@ -48,11 +48,10 @@
           class: "btn btn-danger",
           data: {confirm: "Are you sure?"} %>
     </div>
-    <%= cloudinary_js_config %>
   </div>
 </div>
 
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 <script>
 const uploader = cloudinary.createUploadWidget({
   cloudName: 'dvizsamps',
@@ -63,10 +62,10 @@ const uploader = cloudinary.createUploadWidget({
     if (!error && result && result.event === "success") { 
       console.log('Done! Here is the image info: ', result.info);
       var id = result.info.public_id;
-      var oldUrl = $(".preview-image").attr("src");
+      var oldUrl = document.querySelector(".preview-image").getAttribute("src");
       var newUrl = oldUrl.replace(/\w+$/, id);
-      $(".preview-image").attr("src", newUrl);
-      $("#image-field").attr("value", id);
+      document.querySelector(".preview-image").setAttribute("src", newUrl);
+      document.querySelector("#image-field").setAttribute("value", id);
       console.log(id, newUrl);
     }
   }

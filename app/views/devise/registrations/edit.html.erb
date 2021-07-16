@@ -7,12 +7,12 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :full_name %>
         <%= f.text_field :full_name, class: "form-control" %>
       </div>
 
-       <div class="form-group">
+       <div class="mb-3">
         <%= f.label :email %>
         <%= f.email_field :email, class: "form-control" %>
       </div>
@@ -21,17 +21,17 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :username %>
         <%= f.text_field :username, class: "form-control" %>
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :paypal_email %>
         <%= f.email_field :paypal_email, class: "form-control" %>
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
         <% if @minimum_password_length %>
@@ -39,12 +39,12 @@
         <% end %>
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <%= f.label :current_password %> <i>(to confirm your changes)</i>
         <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
       </div>

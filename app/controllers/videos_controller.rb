@@ -26,9 +26,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def preview
-  end
-
   def new
     @video = Video.new
   end

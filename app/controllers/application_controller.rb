@@ -14,9 +14,6 @@ class ApplicationController < ActionController::Base
         '/close_tab'
       elsif origin_url && origin_url.include?('landing')
         logged_in_path
-      elsif origin_url && origin_url.include?('preview')
-        video_id = origin_url.match(/\/\d+/).to_s[1..-1]
-        video_path(video_id)
       elsif origin_url && origin_url.include?('upload')
         new_video_path
       elsif origin_url

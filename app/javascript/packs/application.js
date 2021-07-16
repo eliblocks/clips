@@ -19,6 +19,7 @@
 // Import the plugins
 
 // src/application.js
+import Rails from "@rails/ujs"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
